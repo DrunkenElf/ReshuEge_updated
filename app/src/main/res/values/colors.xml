@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorButtons">#ffd6a3</color>
+    <color name="colorBlue">#4b8cef</color>
+    <color name="listBackground">#2F3F66</color>
+    <color name="transWhite">#10000000</color>
+
+    <!--<color name="colorPrimary">#f79c1d</color>
+    <color name="colorPrimaryDark">#9c2c2c</color>
+    <color name="colorAccent">#7fa99b</color>
+    <color name="colorPrimaryLight">#f6e79c</color>-->
+
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryDark">#F57C00</color>
+    <color name="colorAccent">#00B8D4</color>
+    <color name="colorPrimaryLight">#FFE0B2</color>
+    <color name="superLight">#EEEEEE</color>
+    <color name="one">#ffffd0</color>
+    <color name="two">#f0ffd0</color>
+    <color name="three">#e0ffd0</color>
+    <color name="four">#d0ffd0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#f7f6f4</color>
+    <color name="ultragrey">#d8d2d2</color>
+    <color name="black">#000000</color>
+    <color name="wh">#f6f7d7</color>
+    <color name="bl">#3ec1d3</color>
+    <color name="or">#ff9a00</color>
+    <color name="pi">#ff165d</color>
+    <color name="wrong">#ffe7e7</color>
+    <color name="wrong_sym">#ffb4b4</color>
+    <color name="right">#ffffe7</color>
+    <color name="right_sym">#c1c1b3</color>
+    <color name="know">#e7ffe7</color>
+    <color name="know_sym">#b3c1b3</color>
+
+
+</resources>

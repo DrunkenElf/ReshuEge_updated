@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/themeIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10px"
+        app:srcCompat="@drawable/ic_training"
+        android:layout_gravity="center_vertical">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:paddingLeft="45dp"
+        android:textColor="#332e2e"
+        android:text="Задание №"
+        android:gravity="center_vertical"
+        android:minHeight="50dp">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/themeReloadIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4px"
+        app:srcCompat="@drawable/ico_reload"
+        android:layout_gravity="center_vertical|right">
+    </ImageView>
+
+
+</FrameLayout>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="navEditor-manualLayoutAlgorithm2">
+    <option name="myPositions">
+      <map>
+        <entry key="mobile_navigation.xml">
+          <value>
+            <LayoutPositions>
+              <option name="myPositions">
+                <map>
+                  <entry key="road_to_settings">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-122" />
+                            <option name="y" value="-69" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_global_settingsFragment3">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="except_search">
+                              <value>
+                                <LayoutPositions>
+                                  <option name="myPosition">
+                                    <Point>
+                                      <option name="x" value="-332" />
+                                      <option name="y" value="179" />
+                                    </Point>
+                                  </option>
+                                  <option name="myPositions">
+                                    <map>
+                                      <entry key="action_global_nav_subj_search2">
+                                        <value>
+                                          <LayoutPositions />
+                                        </value>
+                                      </entry>
+                                      <entry key="createTestsFragment">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="744" />
+                                                <option name="y" value="724" />
+                                              </Point>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="nav_start_page">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="12" />
+                                                <option name="y" value="97" />
+                                              </Point>
+                                            </option>
+                                            <option name="myPositions">
+                                              <map>
+                                                <entry key="action_nav_start_page_to_nav_subj">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                                <entry key="action_nav_start_page_to_nav_subj_themes">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                                <entry key="action_nav_start_page_to_nav_subj_theory">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                                <entry key="action_nav_start_page_to_nav_subj_vars">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                                <entry key="action_nav_start_page_to_nav_teacher1">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                              </map>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="nav_subj">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="256" />
+                                                <option name="y" value="1080" />
+                                              </Point>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="nav_subj_themes">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="256" />
+                                                <option name="y" value="368" />
+                                              </Point>
+                                            </option>
+                                            <option name="myPositions">
+                                              <map>
+                                                <entry key="action_nav_subj_themes_to_themesFragment">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                              </map>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="nav_subj_theory">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="256" />
+                                                <option name="y" value="1436" />
+                                              </Point>
+                                            </option>
+                                            <option name="myPositions">
+                                              <map>
+                                                <entry key="action_nav_subj_theory_to_theoryFragment">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                              </map>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="nav_subj_vars">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="256" />
+                                                <option name="y" value="12" />
+                                              </Point>
+                                            </option>
+                                            <option name="myPositions">
+                                              <map>
+                                                <entry key="action_nav_subj_vars_to_variantsFragment">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                              </map>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="nav_teacher1">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="256" />
+                                                <option name="y" value="724" />
+                                              </Point>
+                                            </option>
+                                            <option name="myPositions">
+                                              <map>
+                                                <entry key="action_nav_teacher1_to_nav_teacher2">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                              </map>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="nav_teacher2">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="500" />
+                                                <option name="y" value="724" />
+                                              </Point>
+                                            </option>
+                                            <option name="myPositions">
+                                              <map>
+                                                <entry key="action_nav_teacher2_to_createTestsFragment">
+                                                  <value>
+                                                    <LayoutPositions />
+                                                  </value>
+                                                </entry>
+                                              </map>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="themesFragment">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="500" />
+                                                <option name="y" value="368" />
+                                              </Point>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="theoryFragment">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="500" />
+                                                <option name="y" value="1436" />
+                                              </Point>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                      <entry key="variantsFragment">
+                                        <value>
+                                          <LayoutPositions>
+                                            <option name="myPosition">
+                                              <Point>
+                                                <option name="x" value="500" />
+                                                <option name="y" value="12" />
+                                              </Point>
+                                            </option>
+                                          </LayoutPositions>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                </LayoutPositions>
+                              </value>
+                            </entry>
+                            <entry key="nav_subj_search">
+                              <value>
+                                <LayoutPositions>
+                                  <option name="myPosition">
+                                    <Point>
+                                      <option name="x" value="-380" />
+                                      <option name="y" value="842" />
+                                    </Point>
+                                  </option>
+                                </LayoutPositions>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="settingsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-81" />
+                            <option name="y" value="-521" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </LayoutPositions>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

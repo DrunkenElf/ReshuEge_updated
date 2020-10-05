@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/road_to_settings">
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.ilnur.Fragments.SettingsFragment"
+        android:label="SettingsFragment" />
+
+
+    <navigation
+        android:id="@+id/road_to_settings"
+        app:startDestination="@id/except_search">
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.Fragments.SubjectSearchFragment"
+            tools:layout="@layout/fragment_subjs" >
+            <action
+                android:id="@+id/action_nav_subj_search_self"
+                app:destination="@id/nav_subj_search"
+                app:enterAnim="@anim/enter_from_right"
+                app:exitAnim="@anim/exit_to_left"
+                app:launchSingleTop="false"
+                app:popEnterAnim="@anim/from_left"
+                app:popExitAnim="@anim/to_right"
+                app:popUpToInclusive="false" />
+        </fragment>
+
+        <action
+            android:id="@+id/action_global_settingsFragment3"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+
+        <navigation
+            android:id="@+id/except_search"
+            app:startDestination="@id/nav_start_page">
+            <fragment
+                android:id="@+id/nav_start_page"
+                android:name="com.ilnur.Fragments.StartPageFragment"
+                android:label="главное меню"
+                tools:layout="@layout/fragment_startpage">
+                <action
+                    android:id="@+id/action_nav_start_page_to_nav_subj_themes"
+                    app:destination="@id/nav_subj_themes"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+                <action
+                    android:id="@+id/action_nav_start_page_to_nav_teacher1"
+                    app:destination="@id/nav_teacher1"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+                <action
+                    android:id="@+id/action_nav_start_page_to_nav_subj_vars"
+                    app:destination="@id/nav_subj_vars"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+                <action
+                    android:id="@+id/action_nav_start_page_to_nav_subj_theory"
+                    app:destination="@id/nav_subj_theory"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+                <action
+                    android:id="@+id/action_nav_start_page_to_nav_subj"
+                    app:destination="@id/nav_subj"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+            </fragment>
+            <fragment
+                android:id="@+id/nav_subj"
+                android:name="com.ilnur.Fragments.SubjectsFragment"
+                android:label="реж_экз"
+                tools:layout="@layout/fragment_subjs" />
+            <fragment
+                android:id="@+id/nav_subj_themes"
+                android:name="com.ilnur.Fragments.SubjectThemesFragment"
+                android:label="катал_пром"
+                tools:layout="@layout/fragment_subjs">
+                <action
+                    android:id="@+id/action_nav_subj_themes_to_themesFragment"
+                    app:destination="@id/themesFragment"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+            </fragment>
+            <fragment
+                android:id="@+id/createTestsFragment"
+
+                android:name="com.ilnur.Fragments.CreateTestsFragment"
+                android:label="CreateTestsFragment" />
+            <fragment
+                android:id="@+id/themesFragment"
+                android:name="com.ilnur.Fragments.ThemesFragment"
+                android:label="ThemesFragment">
+                <argument
+                    android:name="subject_prefix"
+                    app:argType="string" />
+            </fragment>
+            <fragment
+                android:id="@+id/nav_teacher2"
+                android:name="com.ilnur.Fragments.TeacherFragment"
+                tools:layout="@layout/fragment_teacher">
+                <argument
+                    android:name="href"
+                    app:argType="string"
+                    app:nullable="true" />
+                <action
+                    android:id="@+id/action_nav_teacher2_to_createTestsFragment"
+                    app:destination="@id/createTestsFragment"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:launchSingleTop="true"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right"
+                    app:popUpToInclusive="false" />
+
+            </fragment>
+            <fragment
+                android:id="@+id/theoryFragment"
+                android:name="com.ilnur.Fragments.TheoryFragment"
+                android:label="TheoryFragment">
+                <argument
+                    android:name="subject_prefix"
+                    app:argType="string" />
+            </fragment>
+            <fragment
+                android:id="@+id/nav_subj_theory"
+                android:name="com.ilnur.Fragments.SubjectsTheoryFragment"
+                android:label="теор_"
+                tools:layout="@layout/fragment_subjs">
+                <action
+                    android:id="@+id/action_nav_subj_theory_to_theoryFragment"
+                    app:destination="@id/theoryFragment"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+            </fragment>
+            <fragment
+                android:id="@+id/nav_subj_vars"
+                android:name="com.ilnur.Fragments.SubjectsFragment"
+                android:label="переход_вар"
+                tools:layout="@layout/fragment_subjs">
+                <action
+                    android:id="@+id/action_nav_subj_vars_to_variantsFragment"
+                    app:destination="@id/variantsFragment"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+            </fragment>
+            <fragment
+                android:id="@+id/variantsFragment"
+                android:name="com.ilnur.Fragments.VariantsFragment"
+                android:label="VariantsFragment">
+                <argument
+                    android:name="subject_prefix"
+                    app:argType="string" />
+            </fragment>
+            <fragment
+                android:id="@+id/nav_teacher1"
+                android:name="com.ilnur.Fragments.SubjectSearchFragment"
+                tools:layout="@layout/fragment_subjs">
+                <action
+                    android:id="@+id/action_nav_teacher1_to_nav_teacher2"
+                    app:destination="@id/nav_teacher2"
+                    app:enterAnim="@anim/enter_from_right"
+                    app:exitAnim="@anim/exit_to_left"
+                    app:popEnterAnim="@anim/from_left"
+                    app:popExitAnim="@anim/to_right" />
+            </fragment>
+            <action
+                android:id="@+id/action_global_nav_subj_search2"
+                app:destination="@id/nav_subj_search"
+                app:enterAnim="@anim/enter_from_right"
+                app:exitAnim="@anim/exit_to_left"
+                app:popEnterAnim="@anim/from_left"
+                app:popExitAnim="@anim/to_right" />
+        </navigation>
+
+    </navigation>
+
+
+    <!--
+        <fragment
+            android:id="@+id/nav_answer"
+            android:name="com.ilnur.myapplication.ui.home.HomeFragment"
+            android:label="@string/menu_home"
+            tools:layout="@layout/fragment_home" />
+
+        <fragment
+            android:id="@+id/nav_create_tests"
+            android:name="com.ilnur.myapplication.ui.gallery.GalleryFragment"
+            android:label="@string/menu_gallery"
+            tools:layout="@layout/fragment_gallery" />
+
+        <fragment
+            android:id="@+id/nav_settings"
+            android:name="com.ilnur.myapplication.ui.slideshow.SlideshowFragment"
+            android:label="@string/menu_slideshow"
+            tools:layout="@layout/fragment_slideshow" />
+
+        <fragment
+            android:id="@+id/nav_show_task"
+            android:name="com.ilnur.myapplication.ui.tools.ToolsFragment"
+            android:label="@string/menu_tools"
+            tools:layout="@layout/fragment_tools" />
+
+        <fragment
+            android:id="@+id/nav_start_page"
+            android:name="com.ilnur.myapplication.ui.share.ShareFragment"
+            android:label="@string/menu_share"
+            tools:layout="@layout/fragment_share" />
+
+        <fragment
+            android:id="@+id/nav_subjects"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_theory"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+
+        <fragment
+            android:id="@+id/nav_subj_themes"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />
+        <fragment
+            android:id="@+id/nav_subj_search"
+            android:name="com.ilnur.myapplication.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />-->
+
+</navigation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="news">Новости</string>
+    <string name="search">Поиск</string>
+    <string name="stats">Статистика</string>
+    <string name="about">Об экзамене, шкала баллов</string>
+    <string name="info">О проекте</string>
+    <string name="check">Проверить обновления заданий</string>
+    <string name="addon">Дополнительно</string>
+    <string name="settings">Настройки</string>
+    <string name="change">Сменить пользователя</string>
+    <string name="logout">Выйти</string>
+</resources>

@@ -1,0 +1,159 @@
+﻿<resources>
+    <string name="app_name">РЕШУ ЕГЭ</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_section1">Section1</string>
+    <string name="title_section2">Section2</string>
+    <string name="title_section3">Section3</string>
+
+    <string name="error_title">Сервер РЕШУ ЕГЭ временно недоступен.</string>
+    <string name="error">К сожалению, сервер РЕШУ ЕГЭ в настоящий момент временно недоступен. Приносим извинения.</string>
+    <string name="connection_error_title">Отсутствует подключение</string>
+    <string name="connection_error">Для для скачивания и обновления предметов необходимо подключение к сети интернет</string>
+    <string name="pirate_title">ПИРАТСКАЯ КОПИЯ</string>
+    <string name="pirate_message">Ваша копия приложения не прошла проверку подлинности. Последнюю легальную обновляемую версию можно приобрести здесь...\nДавайте, до свидания.</string>
+    <string name="pirate_okay">Да, неловко вышло</string>
+    <string name="email_mandatory">Электронная почта *</string>
+    <string name="password_mandatory">Пароль *</string>
+    <string name="confirm_password_mandatory">Подтвердите пароль *</string>
+    <string name="name_mandatory">Имя *</string>
+    <string name="surname_mandatory">Фамилия *</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="status">Вы ученик, учитель, родитель?</string>
+    <string name="email_error">Вы не ввели адрес электронной почты.</string>
+    <string name="email_validate_error">Проверьте правильность введенного адреса.</string>
+    <string name="password_error">Придумаете пароль и впишите его в соответствующее поле.</string>
+    <string name="confirm_password_error">Введите пароль еще раз.</string>
+    <string name="compare_password_error">Введенные пароли не совпадают.</string>
+    <string name="name_error">Вы не ввели свое имя.</string>
+    <string name="surname_error">Вы не ввели свою фамилию.</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="date_choiсe">Выбор даты</string>
+
+    <string-array name="teach_menu_names">
+        <item>Составить варианты для проверки знаний учащихся</item>
+        <item>Список созданных работ и статистика по работам</item>
+        <item>Индивидуальный профиль знаний учащегося</item>
+        <item>Управление учащимися и группами учащихся. Статистика по учащимся</item>
+        <item>Классный журнал</item>
+        <item>Ваши задания</item>
+        <item>Создать собственный курс в разделе «ШКОЛА»</item>
+    </string-array>
+
+
+    <string-array name="state_array">
+        <item>Ученик</item>
+        <item>Учитель</item>
+        <item>Родитель</item>
+    </string-array>
+
+    <string-array name="state_query">
+        <item>student</item>
+        <item>teacher</item>
+        <item>parent</item>
+    </string-array>
+
+    <array name="menu_array">
+        <item>Варианты</item>
+        <item>Каталог заданий</item>
+        <item>Режим экзамена</item>
+        <item>Справочник</item>
+        <item>Поиск</item>
+        <item>Учителю</item>
+        <item>Статистика</item>
+        <item>Об экзамене, шкала баллов</item>
+    </array>
+
+    <string-array name="subjects">
+        <item>Русский язык</item>
+        <item>Математика: профильный уровень</item>
+        <item>Математика: базовый уровень</item>
+        <item>Информатика</item>
+        <item>Физика</item>
+        <item>Химия</item>
+        <item>Биология</item>
+        <item>География</item>
+        <item>История</item>
+        <item>Обществознание</item>
+        <item>Литература</item>
+        <item>Английский язык</item>
+        <item>Немецкий язык</item>
+        <item>Французский язык</item>
+        <item>Испанский язык</item>
+    </string-array>
+    <string-array name="subjects_handbook">
+        <item>Русский язык</item>
+        <item>Математика</item>
+        <item>Информатика</item>
+        <item>Физика</item>
+        <item>Химия</item>
+        <item>Биология</item>
+        <item>География</item>
+        <item>История</item>
+        <item>Обществознание</item>
+        <item>Литература</item>
+        <item>Английский язык</item>
+        <item>Немецкий язык</item>
+        <item>Французский язык</item>
+        <item>Испанский язык</item>
+    </string-array>
+
+    <string-array name="subjects_prefix">
+        <item>rus</item>
+        <item>math</item>
+        <item>mathb</item>
+        <item>inf</item>
+        <item>phys</item>
+        <item>chem</item>
+        <item>bio</item>
+        <item>geo</item>
+        <item>hist</item>
+        <item>soc</item>
+        <item>lit</item>
+        <item>en</item>
+        <item>de</item>
+        <item>fr</item>
+        <item>sp</item>
+    </string-array>
+
+    <string-array name="subjects_prefix_handbook">
+        <item>rus</item>
+        <item>math</item>
+        <item>inf</item>
+        <item>phys</item>
+        <item>chem</item>
+        <item>bio</item>
+        <item>geo</item>
+        <item>hist</item>
+        <item>soc</item>
+        <item>lit</item>
+        <item>en</item>
+        <item>de</item>
+        <item>fr</item>
+        <item>sp</item>
+    </string-array>
+
+      <string name="title_activity_tests">TestsActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_results">ResultsActivity</string>
+
+    <string name="title_activity_login">РЕШУ ЕГЭ</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="error_invalid_email">Недопустимый формат e-mail</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">Неправильный логин или пароль</string>
+    <string name="error_field_required">Поле не должно быть пустым</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/searchIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="4px"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="4px"
+        app:srcCompat="@drawable/ic_search" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/searchResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:paddingLeft="75dp"
+        android:textColor="#332e2e"
+        android:gravity="center_vertical"
+        android:minHeight="70dp">
+    </TextView>
+
+
+</FrameLayout>

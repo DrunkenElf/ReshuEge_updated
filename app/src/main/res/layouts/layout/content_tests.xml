@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionGroup="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_tests" tools:context="com.ilnur.TestsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionGroup="true"
+        android:orientation="vertical">
+
+
+    <fragment
+        android:id="@+id/fragment_questions_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:transitionGroup="true"
+        android:name="com.ilnur.Fragments.QuestionNumbersFragment" />
+    <fragment
+        android:id="@+id/fragment_show_task"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionGroup="true"
+        android:name="com.ilnur.Fragments.ShowTaskFragment"
+        android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/fragment_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionGroup="true"
+            android:name="com.ilnur.Fragments.AnswerFragment1"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="3dp" />
+
+    </LinearLayout>
+</RelativeLayout>

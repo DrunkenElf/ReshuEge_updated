@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="color_answer"
+        android:summary="Показывать результат ответа на вопрос цветом в номере вопроса вверху экрана во время решения теста"
+        android:defaultValue="false"
+        android:title="Показывать правильность ответа">
+    </CheckBoxPreference>
+    <CheckBoxPreference
+        android:key="show_comment"
+        android:summary="Можно просматривать комментарий, вернувшись к выполненному заданию"
+        android:defaultValue="false"
+        android:title="Показывать решение">
+    </CheckBoxPreference>
+    <CheckBoxPreference
+        android:key="download_pictures"
+        android:summary="Включение данной настройки отключает функцию скачивания картинок. Полноценно решать тесты можно будет только онлайн"
+        android:defaultValue="false"
+        android:title="Не скачивать картинки">
+    </CheckBoxPreference>
+</PreferenceScreen>

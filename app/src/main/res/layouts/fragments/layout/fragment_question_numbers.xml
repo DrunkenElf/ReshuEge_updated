@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/questionNumberLayout"
+    android:background="#ffffff">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingTop="2dp"
+        android:id="@+id/buttonScroll">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/questionNumbers"
+        android:background="#ffffff">
+
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/numberButton"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/questions_selector"
+            android:translationZ="1dp"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="1dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/colorText"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/titles"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="50dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="3dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="№"
+
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/questTitle"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Условие"
+
+            android:textSize="16sp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/answerLayout">
+    <LinearLayout
+        android:id="@+id/image_lay"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_margin="3dp"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/preload"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="left"
+            android:scaleType="centerCrop" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="2dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/answerText"
+        android:hint="Ваш ответ"
+        android:layout_weight="1"
+        android:background="@drawable/white"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:paddingLeft="5dp"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/pointSpinner"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:layout_marginBottom="2dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Загрузить"
+            android:id="@+id/load_img"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:background="@drawable/button_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/black"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:layout_marginBottom="2dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Оценить"
+            android:id="@+id/pointsButton"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:background="@drawable/button_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/black"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:layout_marginBottom="2dp" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Решение"
+        android:id="@+id/commentButton"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:background="@drawable/button_back"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@color/black"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Ответить"
+            android:id="@+id/answerButton"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:background="@drawable/button_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/black"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Далее"
+            android:id="@+id/nextButton"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:background="@drawable/button_back"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/black"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    </LinearLayout>

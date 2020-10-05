@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:transitionGroup="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/search_edit"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
+        android:transitionGroup="true"
+        android:layout_above="@+id/teacher_test"
+        android:hint="Введите ключевые слова для поиска"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
+
+    <CheckBox
+        android:id="@+id/teacher_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Тест составлен учителем"
+        android:layout_above="@+id/searchButton"
+        android:layout_marginLeft="5dp"
+        android:transitionGroup="true"
+        android:layout_marginRight="5dp"
+        tools:visibility="visible"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Поиск"
+        android:id="@+id/searchButton"
+        android:transitionGroup="true"
+        android:background="@drawable/button_answer_selector"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="center"/>
+
+</RelativeLayout>
