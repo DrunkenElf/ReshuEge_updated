@@ -55,6 +55,21 @@ interface SubjectDao {
 }
 
 @Dao
+interface SubjectMainDao {
+    @Query("SELECT * FROM subjectmain")
+    fun getSubjects(): List<SubjectMain>
+
+    @Query("SELECT * FROM subject WHERE href = :href LIMIT 1")
+    fun getSubject(href: String): SubjectMain
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(subject: SubjectMain)
+
+    @Delete
+    fun delete(subject: SubjectMain)
+}
+
+@Dao
 interface UserDao {
     @Query("SELECT * FROM user WHERE login = :login")
     fun getByLogin(login: String): LiveData<List<User>>

@@ -7,6 +7,7 @@ import com.ilnur.DataBase.*
 import com.ilnur.backend.API
 import com.ilnur.backend.ApiRequests
 import com.ilnur.backend.ApiRequestsImp
+import com.ilnur.backend.Downloaders
 import com.ilnur.repository.LoginRepository
 import dagger.Module
 import dagger.Provides
@@ -33,6 +34,9 @@ object DbModule {
     fun provideCategoryDao(@ApplicationContext context: Context): CategoryDao = AppDatabase(context).categoryDao()
     @Provides
     fun provideSubjectDao(@ApplicationContext context: Context): SubjectDao = AppDatabase(context).subjectDao()
+
+    @Provides
+    fun provideSubjectMainDao(@ApplicationContext context: Context): SubjectMainDao = AppDatabase(context).subjectMainDao()
 
     @Provides
     fun provideTaskDao(@ApplicationContext context: Context): TaskDao = AppDatabase(context).taskDao()
@@ -79,19 +83,37 @@ object RetrofitModule {
 
 
 }
-/*@InstallIn(ApplicationComponent::class)
+@InstallIn(ApplicationComponent::class)
 @Module
 object SettingsModule{
     @Singleton
     @Provides
     fun provideSettings(@ApplicationContext context: Context): SettingsImp = SettingsImp(context)
-}*/
+}
+
 @InstallIn(ApplicationComponent::class)
 @Module
 object RepositoryModule {
     @Singleton
     @Provides
     fun provideLoginRepository(@ApplicationContext context: Context, userDao: UserDao) = LoginRepository(context, userDao)
+
+   /* @Singleton
+    @Provides
+    fun provideMainRepository(@ApplicationContext context: Context, userDao: UserDao, subjectDao: SubjectDao) =
+            MainRepository(context, userDao, subjectDao)
+
+    @Singleton
+    @Provides
+    fun provideTopicsRepository(@ApplicationContext context: Context, categoryDao: CategoryDao) = TopicsRepository(context, categoryDao)*/
+}
+
+@InstallIn(ApplicationComponent::class)
+@Module
+object NetworkModule {
+    @Singleton
+    @Provides
+    fun provideDownloader(@ApplicationContext context: Context) = Downloaders(context)
 
    /* @Singleton
     @Provides

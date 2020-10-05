@@ -57,6 +57,17 @@ data class Subject(
 )
 
 @Keep
+@Entity(primaryKeys = ["href"])
+data class SubjectMain(
+        @SerializedName("title")@ColumnInfo(name = "title") val title: String,
+        @SerializedName("href")@ColumnInfo(name = "href") val href: String,
+        @SerializedName("isAdded")@ColumnInfo(name = "isAdded") var isAdded: Boolean = false,
+        @SerializedName("timeUpdated")@ColumnInfo(name = "timeUpdated") var timeUpdated: String? = null,
+        @SerializedName("isNeedToUpd")@ColumnInfo(name = "isNeedToUpd") var isNeedToUpd: Boolean = true,
+        @SerializedName("testsKey")@ColumnInfo(name = "testsKey") var testsKey: Int = -1
+)
+
+@Keep
 @Entity(tableName = "user")
 data class User(
         @SerializedName("login") @PrimaryKey val login: String,

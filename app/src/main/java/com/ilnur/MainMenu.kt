@@ -64,9 +64,6 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
     override val coroutineContext: CoroutineContext
         get() = mJob + Dispatchers.Main
 
-    //internal lateinit var fManager: FragmentManager
-    //internal lateinit var fTransaction: FragmentTransaction
-    //internal var itemSelected: String? = "РЕШУ ЕГЭ"
     internal val itemSelected = Stack<String>()
     internal lateinit var context: Context
     private var mHandler: Handler? = null
