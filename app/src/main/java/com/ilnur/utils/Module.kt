@@ -9,6 +9,7 @@ import com.ilnur.backend.ApiRequests
 import com.ilnur.backend.ApiRequestsImp
 import com.ilnur.backend.Downloaders
 import com.ilnur.repository.LoginRepository
+import com.ilnur.repository.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -98,6 +99,11 @@ object RepositoryModule {
     @Provides
     fun provideLoginRepository(@ApplicationContext context: Context, userDao: UserDao) = LoginRepository(context, userDao)
 
+    @Singleton
+    @Provides
+    fun provideMainRepository(@ApplicationContext context: Context, db: AppDatabase) =
+            MainRepository(context, db)
+
    /* @Singleton
     @Provides
     fun provideMainRepository(@ApplicationContext context: Context, userDao: UserDao, subjectDao: SubjectDao) =
@@ -114,6 +120,7 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideDownloader(@ApplicationContext context: Context) = Downloaders(context)
+
 
    /* @Singleton
     @Provides

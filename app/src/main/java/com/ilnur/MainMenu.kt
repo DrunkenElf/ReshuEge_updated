@@ -17,6 +17,7 @@ import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +46,8 @@ import com.ilnur.Session.Session
 import com.ilnur.Session.SessionState
 import com.ilnur.Session.Settings
 import com.ilnur.utils.MyNavController
+import com.ilnur.viewModel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -57,12 +60,10 @@ import java.util.*
 import javax.net.ssl.HttpsURLConnection
 import kotlin.coroutines.CoroutineContext
 
-class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigationItemSelectedListener, SubjectsFragment.OnFragmentInteractionListener, StartPageFragment.OnFragmentInteractionListener, SubjectsTheoryFragment.OnFragmentInteractionListener, SubjectSearchFragment.OnFragmentInteractionListener, SubjectThemesFragment.OnFragmentInteractionListener {
+@AndroidEntryPoint
+class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, SubjectsFragment.OnFragmentInteractionListener, StartPageFragment.OnFragmentInteractionListener, SubjectsTheoryFragment.OnFragmentInteractionListener, SubjectSearchFragment.OnFragmentInteractionListener, SubjectThemesFragment.OnFragmentInteractionListener {
 
-
-    private lateinit var mJob: Job
-    override val coroutineContext: CoroutineContext
-        get() = mJob + Dispatchers.Main
+    val mainViewModel: MainViewModel by viewModels()
 
     internal val itemSelected = Stack<String>()
     internal lateinit var context: Context
@@ -94,50 +95,7 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("onStart", "sa")
-        /*Log.d("sa",getNavController().currentDestination.toString())
-        Log.d("sa",getNavController().currentDestination!!.parent.toString())
-        //Log.d("sa",getNavController().popBackStack())
-        Log.d("sa",""+getNavController().getBackStackEntry(getNavController().currentDestination!!.id).toString())
-        Log.d("sa",""+getNavController().getBackStackEntry(getNavController().currentDestination!!.id).destination.parent.toString())*/
-        //Log.d("sa",""+getNavController().graph.)
-        //serReceiver()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("onRessume", "sa")
-
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        Log.d("onSave", "sa")
-        super.onSaveInstanceState(outState, outPersistentState)
-        outState?.putAll(getNavController().saveState())
-        //getNavController().navigateUp()
-        //supportFragmentManager.putFragment(outState!!, "myFr", fragment)
-    }
-
-    public override fun onSaveInstanceState(outState: Bundle) {
-        Log.d("onSaveWITHOUT", "sa")
-
-        outState.putString("itemSelected", itemSelected.peek())
-        //getNavController().saveState()
-        outState.putAll(getNavController().saveState())
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        Log.d("onRes", "sa")
-        super.onRestoreInstanceState(savedInstanceState)
-        getNavController().restoreState(savedInstanceState)
-    }
-
     private fun createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             var importance = NotificationManager.IMPORTANCE_HIGH
             var channel = NotificationChannel("77", "РЕШУ ЕГЭ", importance).apply {
@@ -166,20 +124,15 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
     }
 
 
-
-
-
-
     //@SuppressLint("RestrictedApi")
     //@SuppressLint("RestrictedApi")
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createNotificationChannel()
-        instance = savedInstanceState
         setupAnim()
         setContentView(R.layout.activity_main_menu)
-        mJob = Job()
+
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         if (itemSelected.isEmpty())
@@ -187,22 +140,12 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
         Log.d("MAINACT", "onCreate")
         context = this
 
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-
-        //container = findViewById<View>(R.id.container) as FrameLayout
-        //fManager = supportFragmentManager
 
 
         val si = SubjInfo()
         si.context = context
         si.check_subject_data()
 
-        val fab = findViewById<View>(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://ege.sdamgia.ru/"))
-            startActivity(browserIntent)
-        }
 
         setVersionPreferences()
         val content: CoordinatorLayout = findViewById(R.id.coordinator_layout)
@@ -243,9 +186,6 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
             setFragment(startFragment, "START", savedInstanceState)
         }*/
 
-        if (!itemSelected.peek()!!.contentEquals(getString(R.string.app_name))) {
-            fab.visibility = View.GONE
-        }
 
         val updatePref = getSharedPreferences("updateShown", AppCompatActivity.MODE_PRIVATE)
 
@@ -254,9 +194,6 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
         ed.apply()
         toggle.syncState()
 
-
-        instance = savedInstanceState
-        //val call = OnBackPressedCallback()
     }
 
 
@@ -284,9 +221,6 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
 
         if (id == R.id.action_settings) {
