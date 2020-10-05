@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     //useLibrary 'org.apache.http.legacy'
@@ -15,6 +17,15 @@ android {
         versionName '1.9.2.1'
         multiDexEnabled true
         useLibrary 'org.apache.http.legacy'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation":
+                                      "$projectDir/schemas".toString(),
+                              "room.incremental":"true"]
+            }
+        }
+
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -51,6 +62,8 @@ android {
         targetCompatibility = 8
     }
     sourceSets{
+        androidTest.assets.srcDirs +=
+                files("$projectDir/schemas".toString())
         main {
             res.srcDirs =
                     [
@@ -61,6 +74,12 @@ android {
                     ]
         }
     }
+    kotlinOptions { jvmTarget = "1.8" }
+
+    androidExtensions {
+        experimental = true
+    }
+
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -71,11 +90,19 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    def room_version = "2.2.5"
+
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     testImplementation 'junit:junit:4.13'
     //implementation 'org.adblockplus:adblock-android:3.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.1'
+
+    implementation "androidx.room:room-runtime:$room_version"//
+    kapt "androidx.room:room-compiler:$room_version"//
+    implementation "androidx.room:room-ktx:$room_version"
+
+
     //implementation 'com.google.android.gms:play-services-ads:18.1.1'
     implementation "androidx.preference:preference:1.1.1"
     implementation 'com.github.rubensousa:raiflatbutton:0.1'
@@ -83,34 +110,55 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.TellH:RecyclerTreeView:1.2.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta7'
-    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation "androidx.core:core-ktx:1.3.2"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'androidx.navigation:navigation-fragment:2.2.2'
-    implementation 'androidx.navigation:navigation-ui:2.2.2'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+    implementation 'androidx.navigation:navigation-fragment:2.3.0'
+    implementation 'androidx.navigation:navigation-ui:2.3.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
     implementation 'com.github.ReactiveX:RxKotlin:2.x-SNAPSHOT'
-    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01"//
+    implementation "androidx.fragment:fragment-ktx:1.2.5"//
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //implementation 'com.github.liuguangqiang.swipeback:library:1.0.2@aar'
     //implementation 'com.github.matecode:Snacky:1.1.4'
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.3.72'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.4.10'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.github.liuguangqiang.swipeback:library:1.0.2@aar'
-    implementation "com.squareup.okhttp3:okhttp:4.7.2"
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     //implementation 'androidx.navigation:navigation-fragment:2.1.0'
     //implementation 'androidx.navigation:navigation-ui:2.1.0'
     //implementation "androidx.work:work-runtime:2.3.0-rc01"
     //implementation 'org.apache.httpcomponents:httpmime:4.5.12'
+
+    //hilt
+    implementation 'com.google.dagger:hilt-android:2.29.1-alpha'
+    implementation "androidx.hilt:hilt-common:1.0.0-alpha02"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+    kapt "com.google.dagger:hilt-android-compiler:2.29.1-alpha"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
+
+
+
 }
 repositories {
     mavenCentral()

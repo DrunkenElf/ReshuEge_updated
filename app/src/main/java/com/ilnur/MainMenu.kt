@@ -621,7 +621,7 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
 
         ad.setNegativeButton("Да") { dialog, arg1 ->
             if (change_user) {
-                MyDB.removeUser(MyDB.getUser().login)
+                //MyDB.removeUser(MyDB.getUser().login)
                 val sessionObject = Session("", SessionState.anonymus)
                 val settings = Settings()
                 settings.setSession(sessionObject, context)
@@ -671,7 +671,7 @@ class MainMenu : AppCompatActivity(), CoroutineScope, NavigationView.OnNavigatio
         internal var instance: Bundle? = null
 
 
-        lateinit var user: User
+        //lateinit var user: User
 
         private val SALT = byteArrayOf(-46, 65, 30, -128, -113, -103, -57, 74, -64, 51, 88, -95, -45, 77, -117, -36, -11, 32, -64, 89)
     }

@@ -11,9 +11,15 @@ import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
+import com.ilnur.DataBase.AppDatabase
+import com.ilnur.DataBase.User
 import com.ilnur.Session.Session
 import com.ilnur.Session.SessionState
 import com.ilnur.Session.Settings
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -21,137 +27,69 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.net.URL
+import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 import kotlin.coroutines.CoroutineContext
 
-public class SplashActivity : AppCompatActivity(), CoroutineScope {
-    lateinit var user: User
+@AndroidEntryPoint
+ class SplashActivity : AppCompatActivity() {
 
-    private lateinit var mJob: Job
-    override val coroutineContext: CoroutineContext
-        get() = mJob + Dispatchers.Main
+    @Inject
+    lateinit var db: AppDatabase
 
-    private fun setupAnim() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            with(window) {
-                requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
-                val toRight = Slide()
-                toRight.slideEdge = Gravity.RIGHT
-                toRight.duration = 300
+    //@Inject lateinit var settings: SettingsImp
 
-                val toLeft = Slide()
-                toLeft.slideEdge = Gravity.LEFT
-                toLeft.duration = 300
+    fun isLogged() {
+        //settings.isLogged.asLiveData().observe()
+        lifecycleScope.launch(Dispatchers.IO){
+            _user.postValue(db.userDao().getUserList().firstOrNull())
 
-                //когда переходишь на новую
-                exitTransition = toRight
-                enterTransition = toRight
-                allowEnterTransitionOverlap = true
-                allowReturnTransitionOverlap = true
-
-                //когда нажимаешь с другого назад и открываешь со старого
-                returnTransition = toRight
-                reenterTransition = toRight
-            }
+        }
+        user.observe(this) {
+            val tmp = it
+            if (tmp == null) {
+                startLoginAct()
+            } else if (tmp.session_id != null && tmp.password != null && tmp.logged) {
+                Log.d("Used data exist", tmp.toString())
+                //start main
+                startMainActivity(tmp)
+            } else
+                startLoginAct()
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        //setupAnim()
         setContentView(R.layout.activity_splash)
-        mJob = Job()
-        val handler = Handler()
 
-        user = (application as Reshuege).get_user()
 
-        if (user.login == null || user.password == null) {
-            val intent = Intent(this, LoginActivity::class.java)
-            val runnable = Runnable {
-                if (Build.VERSION.SDK_INT > 20) {
-                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
-                    startActivity(intent, options.toBundle())
-                } else {
-                    startActivity(intent)
-                }
-                Log.d("splash noUser", "log or pas null")
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    supportFinishAfterTransition()
-                } else
-                    finish()
-            }
-            handler.postDelayed(runnable, 2000)
-        } else {
-            /*
-             * проверить на логирование
-             * ЕСЛИ тру - продолжить, фолс - написать причину в тосте и продолжить
-             * */
-            if (user.session_id != null && user.login != null && user.password != null) {
-                Log.d("apCont", applicationContext.toString())
-                val intent = Intent(applicationContext, MainMenu::class.java)
-                val runnable = Runnable {
-                    if (Build.VERSION.SDK_INT > 20) {
-                        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
-                        Log.d("actOpt", options.toString())
-                        startActivity(intent, options.toBundle())
-                    } else {
-                        startActivity(intent)
-                    }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        supportFinishAfterTransition()
-                    } else
-                        finish()
-                }
-                handler.postDelayed(runnable, 2000)
-            } else if (Connection.hasConnection(this)) {
-                Log.d("main hascon", "has connection")
-
-                launch(Dispatchers.Main) {
-                        Log.d("before", "result")
-                        //showSomeData(user.login!!, user.password!!)
-                        //val result = checkLogin(user.login!!, user.password!!)
-                    showSomeData(user.login!!, user.password!!)
-                        Log.d("after", "result")
-
-                       // onResponse(result)
-                }
-            } else {
-                Log.d("main noCon", "no connection")
-                val sessionObject = Session("", SessionState.anonymus)
-                val settings = Settings()
-                settings.setSession(sessionObject, applicationContext)
-                settings.setLoginAndPassword("", "", applicationContext)
-                //Toast.makeText(applicationContext, "Для авторизации необобходимо подключение к интернету", Toast.LENGTH_SHORT).show()
-                val intent = Intent(applicationContext, LoginActivity::class.java)
-                val runnable = Runnable {
-                    if (Build.VERSION.SDK_INT > 20) {
-                        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
-                        startActivity(intent, options.toBundle())
-                    } else {
-                        startActivity(intent)
-                    }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        supportFinishAfterTransition()
-                    } else
-                        finish()
-                }
-                handler.postDelayed(runnable, 2000)
-            }
-        }
+        isLogged()
     }
 
 
-
-    override fun onDestroy() {
-        Log.d("dest", "tyes")
-        super.onDestroy()
+    private fun startMainActivity(user: User){
+        Log.d("startMain", user.toString())
+        val startupIntent = Intent(this, MainMenu::class.java)
+        startActivity(startupIntent)
+        this.finish()
     }
+
+    private fun startLoginAct() {
+        Log.d("startLogin", "no user")
+        val startupIntent = Intent(this, LoginActivity::class.java)
+        startActivity(startupIntent)
+        this.finish()
+    }
+
+    private val _user = MutableLiveData<User?>()
+
+    val user: LiveData<User?> get() = _user
+
 
     /*fun checkLogin(mEmail: String, mPassword: String) : Deferred<Resp> = async {
          execLogin(mEmail, mPassword)
     }*/
-    suspend fun showSomeData(mEmail: String, mPassword: String) = coroutineScope {
+    /*suspend fun showSomeData(mEmail: String, mPassword: String) = coroutineScope {
         val data = async(Dispatchers.IO) { // <- extension on current scope
             execLogin(mEmail, mPassword)
                }
@@ -264,5 +202,5 @@ public class SplashActivity : AppCompatActivity(), CoroutineScope {
         } catch (np: NullPointerException) {
             return Resp(false, "")
         }
-    }
+    }*/
 }

@@ -13,7 +13,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.ilnur.Json.Root;
 import com.ilnur.Json.Tema;
-import com.ilnur.User;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -81,7 +81,7 @@ public class MyDB extends SQLiteOpenHelper {
         }
     }
 
-    public static User getUser() {
+   /* public static User getUser() {
         SQLiteDatabase sqdb = instance.getReadableDatabase();
         Cursor cursor = sqdb.rawQuery("SELECT login, password, session_id FROM user", null);
         if (cursor.moveToFirst()) {
@@ -94,7 +94,7 @@ public class MyDB extends SQLiteOpenHelper {
         } else {
             return new User(null, null, null);
         }
-    }
+    }*/
 
     public static void updateUser(String login, String password, String session_id) {
         SQLiteDatabase sqdb = instance.getWritableDatabase();
