@@ -120,7 +120,7 @@ class SubjInfo {
                 /*} else {
                     return "";
                 }*/
-                Log.d("DOWNLOADED_info", str)
+                Log.d("DOWNLOADED_info", str.toString())
                 return str
 
             }

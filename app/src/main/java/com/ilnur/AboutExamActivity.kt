@@ -46,7 +46,7 @@ class AboutExamActivity : AppCompatActivity() {
 
         supportActionBar?.title = title
 
-        showTheory(manual)
+        showTheory(manual.toString())
     }
 
     private fun showTheory(theoryText: String) {

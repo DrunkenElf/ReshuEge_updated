@@ -108,7 +108,7 @@ class ParserUrlTasks(internal var context: Context, internal var subject_prefix:
         //ArrayList<ArrayList<JSONObject>> questions = new ArrayList<ArrayList<JSONObject>>();
         val questions = arrayOfNulls<ArrayList<*>>(15) as Array<ArrayList<JSONObject>>
         testID = loadAPI("predefined_tests", 0)
-        Log.d("myLogs", testID)
+        Log.d("myLogs", testID.toString())
         try {
             val id = JSONObject(testID)
             testID = id.getString("data")
@@ -146,7 +146,7 @@ class ParserUrlTasks(internal var context: Context, internal var subject_prefix:
                 .retry()
                 .subscribe(
                         {result -> questions[result.index] = result.array},
-                        {error -> Log.d("ERROR", error.message)},
+                        {error -> Log.d("ERROR", error.message.toString())},
                         {onLoadFinish(questions)}
                 )
 

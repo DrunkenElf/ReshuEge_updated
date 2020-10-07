@@ -176,7 +176,7 @@ class DownloadUrlTasks(var context: Context, internal var subject_prefix: String
                 .retry(2)
                 .subscribe(
                         { result -> print(result.index) },
-                        { error -> Log.d("ERROR", error.message) },
+                        { error -> Log.d("ERROR", error.message.toString()) },
                         { onLoadFinish() }
                 )
 

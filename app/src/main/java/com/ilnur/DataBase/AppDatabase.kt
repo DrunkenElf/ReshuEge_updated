@@ -1,6 +1,7 @@
 package com.ilnur.DataBase
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -11,7 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Task::class, User::class, Category::class, Card::class, Subject::class], version = 2)
+@Database(entities = [Task::class, User::class, Category::class, Card::class, Subject::class, SubjectMain::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
@@ -45,6 +46,7 @@ abstract class AppDatabase : RoomDatabase() {
                             val titles = context.resources.getStringArray(R.array.subjects)
                             val hrefs = context.resources.getStringArray(R.array.subjects_prefix)
                             titles.zip(hrefs).forEach {
+                                Log.d("first   second", it.first +  " "+it.second)
                                 instance?.subjectMainDao()?.insert(SubjectMain(it.first, it.second))
                             }
                         }

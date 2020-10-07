@@ -57,7 +57,7 @@
         </service>
 
         <service android:name=".DownloadTasks.DownloadIntService" />
-        <receiver android:name=".Adapters.SubjAdapter$BroadIntReceiver" ></receiver>
+        <!--<receiver android:name=".Adapters.SubjAdapter$BroadIntReceiver" ></receiver>-->
         <activity
             android:name="com.ilnur.TestsActivity"
             android:label="@string/title_activity_tests"

@@ -59,7 +59,7 @@ interface SubjectMainDao {
     @Query("SELECT * FROM subjectmain")
     fun getSubjects(): List<SubjectMain>
 
-    @Query("SELECT * FROM subject WHERE href = :href LIMIT 1")
+    @Query("SELECT * FROM subjectmain WHERE href = :href LIMIT 1")
     fun getSubject(href: String): SubjectMain
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

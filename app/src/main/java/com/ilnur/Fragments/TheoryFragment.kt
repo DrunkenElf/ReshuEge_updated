@@ -39,7 +39,7 @@ class TheoryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         subject_prefix = arguments?.getString("subject_prefix")
-        Log.i("subjectTH", subject_prefix)
+        Log.i("subjectTH", subject_prefix.toString())
         val root = inflater.inflate(R.layout.fragment_theory, container, false)
 
         val rw = root.findViewById<RecyclerView>(R.id.rv_theory)

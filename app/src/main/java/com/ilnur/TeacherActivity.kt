@@ -76,7 +76,7 @@ class TeacherActivity : AppCompatActivity() {
         pref = intent.getStringExtra("pref")
         //cont = this;
         url = intent.getStringExtra("url")
-        cookies = listToMap(intent.getStringArrayListExtra("keySet"), intent.getStringArrayListExtra("values"))
+        cookies = listToMap(intent.getStringArrayListExtra("keySet")!!, intent.getStringArrayListExtra("values")!!)
 
         if (cookies == null) {
             showMessage("Что-то не так", "Попробуйте зайти снова")
@@ -128,7 +128,7 @@ class TeacherActivity : AppCompatActivity() {
         }
         CookieSyncManager.getInstance().sync()
         if (!webClient.isFinished)
-            web!!.loadUrl(url, cookies)
+            web!!.loadUrl(url.toString(), cookies)
 
     }
 

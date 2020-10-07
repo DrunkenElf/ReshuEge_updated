@@ -68,11 +68,11 @@ class StatisticsActivity : AppCompatActivity() {
 
     fun getIntentExtras() {
         val intent = intent
-        question_number = intent.getStringArrayListExtra("question_number")
-        solved = intent.getIntegerArrayListExtra("solved")
-        rightSolved = intent.getIntegerArrayListExtra("right_solved")
-        percents = intent.getIntegerArrayListExtra("percents")
-        subject_name = intent.getStringExtra("subject_name")
+        question_number = intent.getStringArrayListExtra("question_number") as ArrayList<String>
+        solved = intent.getIntegerArrayListExtra("solved") as ArrayList<Int>
+        rightSolved = intent.getIntegerArrayListExtra("right_solved") as ArrayList<Int>
+        percents = intent.getIntegerArrayListExtra("percents") as ArrayList<Int>
+        subject_name = intent.getStringExtra("subject_name").toString()
     }
 
     fun initializeTable() {

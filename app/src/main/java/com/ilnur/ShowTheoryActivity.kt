@@ -44,7 +44,7 @@ class ShowTheoryActivity : AppCompatActivity() {
         val subj_pref = intent.getStringExtra("subj_pref")
         val id = intent.getStringExtra("id")
         //Log.d("myLogs", theoryText);
-        showTheory(subj_pref, id)
+        showTheory(subj_pref.toString(), id!!)
     }
 
     private fun showTheory(table: String, id: String) {

@@ -42,6 +42,10 @@ class LoginViewModel @ViewModelInject constructor (private val repository: Login
         _loginResult.postValue(state)
     }
 
+    fun addMainSubjs(){
+        repository.addMainSubjs()
+    }
+
 
     fun login(login: String, password: String) {
         //проверяем пароль и логин

@@ -101,8 +101,8 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideMainRepository(@ApplicationContext context: Context, db: AppDatabase) =
-            MainRepository(context, db)
+    fun provideMainRepository(@ApplicationContext context: Context, db: AppDatabase, downloaders: Downloaders) =
+            MainRepository(context, db, downloaders)
 
    /* @Singleton
     @Provides
@@ -119,7 +119,7 @@ object RepositoryModule {
 object NetworkModule {
     @Singleton
     @Provides
-    fun provideDownloader(@ApplicationContext context: Context) = Downloaders(context)
+    fun provideDownloader(@ApplicationContext context: Context,apiRequests: ApiRequestsImp, db: AppDatabase) = Downloaders(context, apiRequests, db)
 
 
    /* @Singleton

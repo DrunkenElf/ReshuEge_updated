@@ -47,7 +47,7 @@ class MenuAdapater(private val context: Context, private val mas: Array<String>,
                         Update(context,false).doInBackground()
                         settings.setFirstStartFlag(true, context)
                     }*/
-                    mListener.onFragmentInteraction(itemSelected!!, 1)
+                    mListener.onFragmentInteraction(mas[position], 1)
                 }
                 "Каталог заданий" -> {
                     itemSelected = "Каталог заданий"
@@ -59,7 +59,7 @@ class MenuAdapater(private val context: Context, private val mas: Array<String>,
                         Update(context,false).doInBackground()
                         settings.setFirstStartFlag(true, context)
                     }*/
-                    mListener.onFragmentInteraction(itemSelected!!, 2)
+                    mListener.onFragmentInteraction(mas[position], 2)
                 }
                 "Режим экзамена" -> {
                     itemSelected = "Режим экзамена"
@@ -71,7 +71,7 @@ class MenuAdapater(private val context: Context, private val mas: Array<String>,
                         Update(context,false).doInBackground()
                         settings.setFirstStartFlag(true, context)
                     }*/
-                    mListener.onFragmentInteraction(itemSelected!!, 3)
+                    mListener.onFragmentInteraction(mas[position], 3)
                 }
                 "Справочник" -> {
                     itemSelected = "Теория"
@@ -81,20 +81,20 @@ class MenuAdapater(private val context: Context, private val mas: Array<String>,
                 "Поиск" -> {
                     itemSelected = "Поиск"
                     Log.d("StartPage", "poisk")
-                    mListener.onFragmentInteraction(itemSelected!!, 5)
+                    mListener.onFragmentInteraction(mas[position], 5)
                 }
                 "Учителю" -> {
                     itemSelected = "Учителю"
                     Log.d("StartPage", "teach")
-                    mListener.onFragmentInteraction(itemSelected!!, 6)
+                    mListener.onFragmentInteraction(mas[position], 6)
                 }
                 "Статистика" -> {
                     itemSelected = "Статистика"
-                    mListener.onFragmentInteraction(itemSelected!!, 7)
+                    mListener.onFragmentInteraction(mas[position], 7)
                 }
                 "Об экзамене, шкала баллов" -> {
                     itemSelected = "Об экзамене"
-                    mListener.onFragmentInteraction(itemSelected!!, 8)
+                    mListener.onFragmentInteraction(itemSelected, 8)
                 }
             }
         }

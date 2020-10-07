@@ -89,7 +89,7 @@ class Update(internal var context: Context, var isLogin: Boolean) {
                                     predefined_variant[result.ind] = result.id
                             }
                         },
-                        { error -> Log.d("ERROR", error.message)},
+                        { error -> Log.d("ERROR", error.message.toString())},
                         { onPostExecute(predefined_variant) }
                 )
 

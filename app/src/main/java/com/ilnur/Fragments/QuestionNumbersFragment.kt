@@ -42,19 +42,21 @@ class QuestionNumbersFragment : Fragment() {
         val countPref = activity!!.getSharedPreferences("subjects_questions_count", Activity.MODE_PRIVATE)
         val settingsPref = PreferenceManager.getDefaultSharedPreferences(activity)
 
-        if (section.contentEquals("Варианты") || section.contentEquals("Режим экзамена")) {
-            questionCount = countPref.getInt(subject_prefix + "_questions_count", 0)
-        } else if (section.contentEquals("Каталог заданий")) {
-            val themeNumber = activity!!.intent.getIntExtra("theme_number", 1)
-            questionCount = countPref.getInt(subject_prefix + "_" + themeNumber + "_questions_count", 0)
-        } else if (section.contentEquals("Поиск")) {
-            questionCount = activity!!.intent.getIntExtra("count", 0)
-        }
+        if (section != null) {
+            if (section.contentEquals("Варианты") ?: section . contentEquals ("Режим экзамена")) {
+                questionCount = countPref.getInt(subject_prefix + "_questions_count", 0)
+            } else if (section?.contentEquals("Каталог заданий")) {
+                val themeNumber = activity!!.intent.getIntExtra("theme_number", 1)
+                questionCount = countPref.getInt(subject_prefix + "_" + themeNumber + "_questions_count", 0)
+            } else if (section.contentEquals("Поиск")) {
+                questionCount = activity!!.intent.getIntExtra("count", 0)
+            }
 
-        if (section.contentEquals("Варианты") || section.contentEquals("Каталог заданий") || section.contentEquals("Поиск")) {
-            color_answer = settingsPref.getBoolean("color_answer", false)
-        } else {
-            color_answer = false
+            if (section.contentEquals("Варианты") || section.contentEquals("Каталог заданий") || section.contentEquals("Поиск")) {
+                color_answer = settingsPref.getBoolean("color_answer", false)
+            } else {
+                color_answer = false
+            }
         }
 
         for (i in 1..questionCount) {

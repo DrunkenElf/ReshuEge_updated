@@ -100,7 +100,7 @@ class ResultsActivity : AppCompatActivity() {
             Log.d("myLogs", subj_data.toString())
         } catch (e: Exception) {
             Log.d("myLogs", "subjinfo problem")
-            Log.d("myLogs", e.message+"")
+            Log.d("myLogs", e.message + "")
         }
 
 
@@ -129,7 +129,7 @@ class ResultsActivity : AppCompatActivity() {
             buttonSaveStats.visibility = View.GONE
         }
         buttonSaveStats.setOnClickListener { saveStats(session) }
-        Log.d("PubType", " "+publicType)
+        Log.d("PubType", " " + publicType)
         if (publicType != 0) {
             buttonSaveStats.visibility = View.GONE
             saveStats(session)
@@ -224,7 +224,7 @@ class ResultsActivity : AppCompatActivity() {
                     }*/
                 }
             }
-            Log.d("QUERY", query)
+            Log.d("QUERY", query.toString())
             val save = SaveStatistics(context, subject_prefix, query!!)
             save.execute()
         }
@@ -233,25 +233,25 @@ class ResultsActivity : AppCompatActivity() {
     fun getIntentExtras() {
         val intent = intent
         variantNumber = intent.getIntExtra("variant", 0)
-        body = intent.getStringArrayListExtra("body")
-        solution = intent.getStringArrayListExtra("solution")
-        task = intent.getStringArrayListExtra("task")
-        the_text = intent.getStringArrayListExtra("the_text")
-        answer = intent.getStringArrayListExtra("answer")
-        type = intent.getStringArrayListExtra("type")
-        question_id = intent.getStringArrayListExtra("question_id")
-        yourAnswerArray = intent.getStringArrayExtra("your_answer")
-        points = intent.getStringArrayExtra("points")
+        body = intent.getStringArrayListExtra("body") as ArrayList<String>
+        solution = intent.getStringArrayListExtra("solution") as ArrayList<String>
+        task = intent.getStringArrayListExtra("task") as ArrayList<String>
+        the_text = intent.getStringArrayListExtra("the_text") as ArrayList<String>
+        answer = intent.getStringArrayListExtra("answer") as ArrayList<String>
+        type = intent.getStringArrayListExtra("type") as ArrayList<String>
+        question_id = intent.getStringArrayListExtra("question_id") as ArrayList<String>
+        yourAnswerArray = intent.getStringArrayExtra("your_answer") as Array<String>
+        points = intent.getStringArrayExtra("points") as Array<String>
         rightAnswers = intent.getIntExtra("right_answers", 0)
-        stateAnswerArray = intent.getStringArrayExtra("state_answer")
-        colorArray = intent.getStringArrayExtra("color")
+        stateAnswerArray = intent.getStringArrayExtra("state_answer") as Array<String>
+        colorArray = intent.getStringArrayExtra("color") as Array<String>
         questionsCount = intent.getIntExtra("questions_count", 0)
         maxPoints = intent.getIntExtra("max_points", 0)
-        subject_prefix = intent.getStringExtra("subject_prefix")
-        section = intent.getStringExtra("section")
+        subject_prefix = intent.getStringExtra("subject_prefix").toString()
+        section = intent.getStringExtra("section").toString()
         publicType = intent.getIntExtra("public", 0)
         teacherId = intent.getIntExtra("teacherId", 0)
-        images = intent.getParcelableArrayListExtra("images")
+        images = intent.getParcelableArrayListExtra("images")!!
     }
 
     internal fun initializePointsTextView() {
@@ -421,13 +421,13 @@ class ResultsActivity : AppCompatActivity() {
                 images.forEach { t: Results ->
                     run {
                         if (t.path != null)
-                         Log.d("img path", t.path)
-                        Log.d("indi file", t.filename + " "+ t.indice)
-                        if (t != null && t.filename!=null && t.indice != null && t.indice == i && t.path != null)
+                            Log.d("img path", t.path.toString())
+                        Log.d("indi file", t.filename + " " + t.indice)
+                        if (t != null && t.filename != null && t.indice != null && t.indice == i && t.path != null)
                             commentText += "<p><img src=\"file://" + t.path + "\"/>"
                     }
                 }
-                Log.d("web ", "file://"+commentText)
+                Log.d("web ", "file://" + commentText)
                 comment.loadDataWithBaseURL(null, commentText, "text/html", "utf-8", null)
 
                 containerLayout.addView(comment)

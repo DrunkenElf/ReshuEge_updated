@@ -93,8 +93,8 @@ class ForegroundService : Service() {
             start()
         }
         //return super.onStartCommand(intent, flags, startId)
-        subject_prefix = intent!!.getStringExtra("prefix")
-        name = intent.getStringExtra("name")
+        subject_prefix = intent!!.getStringExtra("prefix").toString()
+        name = intent.getStringExtra("name").toString()
         val settingsPref = PreferenceManager.getDefaultSharedPreferences(this)
         download_pictures = settingsPref.getBoolean("download_pictures", false)
 
@@ -158,7 +158,7 @@ class ForegroundService : Service() {
                 .map { i -> loadVar(testID!!, countPref, db, QUESTIONS_COUNT, i - 1) }
                 .subscribe(
                         { result -> print(result.index) },
-                        { error -> Log.d("ERROR", error.message) },
+                        { error -> Log.d("ERROR", error.message.toString()) },
                         { onLoadFinish(intent) }
                 )
         /*val vals = Observable.range(1, 15) as Observable<Int>

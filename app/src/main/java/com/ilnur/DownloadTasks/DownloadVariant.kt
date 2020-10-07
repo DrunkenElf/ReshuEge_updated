@@ -63,7 +63,7 @@ class DownloadVariant(private val context: Context, private val subject_prefix: 
                 Log.d("TOKEN", token)
             }
             val questionNumbersString = loadAPI("get_test&id=", Integer.parseInt(testID))
-            Log.d("TASK: Variant: ", questionNumbersString)
+            Log.d("TASK: Variant: ", questionNumbersString.toString())
             val variant = JSONObject(questionNumbersString)
             publicType = variant.optInt("public")
             teacherId = variant.optInt("teacher")

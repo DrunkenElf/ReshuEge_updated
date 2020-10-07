@@ -40,7 +40,7 @@ class StartPageFragment : Fragment() {
     }
 
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(itemSelected: String, i: Int)
+        fun onFragmentInteraction(itemSelected: String?, i: Int)
     }
 
     fun sendItemSelected(itemSelected: String, i: Int) {

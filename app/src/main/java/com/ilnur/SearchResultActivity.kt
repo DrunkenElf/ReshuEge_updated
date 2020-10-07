@@ -47,8 +47,8 @@ class SearchResultActivity : AppCompatActivity() {
         setupAnim()
         setContentView(R.layout.activity_search_results)
         val lv = findViewById<ListView>(R.id.list_results)
-        results = intent.getIntArrayExtra("results")
-        subject_prefix = intent.getStringExtra("subject_prefix")
+        results = intent.getIntArrayExtra("results")!!
+        subject_prefix = intent.getStringExtra("subject_prefix").toString()
         val resultsString = arrayOfNulls<String?>(results.size)
         for (i in results.indices) {
             resultsString[i] = results[i].toString()

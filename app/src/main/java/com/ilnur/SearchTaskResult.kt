@@ -53,12 +53,12 @@ class SearchTaskResult : AppCompatActivity(), View.OnClickListener {
         showSearched = findViewById<View>(R.id.showSearched) as Button
 
         if (theoryText == null) {
-            body = intent.getStringExtra("body")
-            solution = intent.getStringExtra("solution")
-            id = intent.getStringExtra("id")
-            task = intent.getStringExtra("task")
-            type = intent.getStringExtra("type")
-            text = intent.getStringExtra("text")
+            body = intent.getStringExtra("body").toString()
+            solution = intent.getStringExtra("solution").toString()
+            id = intent.getStringExtra("id").toString()
+            task = intent.getStringExtra("task").toString()
+            type = intent.getStringExtra("type").toString()
+            text = intent.getStringExtra("text").toString()
 
             theoryText = "<b>Задание № " + id + ". Часть " + (if (type.contentEquals("2")) "B" else "C") + ". Тип " + task + "</b><p>" +
                     body
@@ -68,7 +68,7 @@ class SearchTaskResult : AppCompatActivity(), View.OnClickListener {
             showSearched.setOnClickListener(this)
             showSearched.visibility = View.VISIBLE
         }
-        Log.d("myLogs", theoryText)
+        Log.d("myLogs", theoryText!!)
 
         showTheory(theoryText)
     }
@@ -77,7 +77,7 @@ class SearchTaskResult : AppCompatActivity(), View.OnClickListener {
         val showWV = findViewById<View>(R.id.theoryView) as WebView
         showWV.settings.builtInZoomControls = true
         showWV.settings.displayZoomControls = false
-        showWV.loadDataWithBaseURL(null, theoryText, "text/html", "utf-8", null)
+        showWV.loadDataWithBaseURL(null, theoryText.toString(), "text/html", "utf-8", null)
     }
 
 

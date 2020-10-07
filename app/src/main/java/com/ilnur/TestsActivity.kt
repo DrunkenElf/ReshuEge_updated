@@ -112,7 +112,7 @@ class TestsActivity : AppCompatActivity(), QuestionNumbersFragment.OnFragmentInt
         setSupportActionBar(toolbar)
         isTeach = intent.getBooleanExtra("isTeach", false)
         if (isTeach) {
-            token = intent.getStringExtra("token")
+            token = intent.getStringExtra("token").toString()
         }
 
         publicType = intent.getIntExtra("public", 0)
@@ -135,15 +135,15 @@ class TestsActivity : AppCompatActivity(), QuestionNumbersFragment.OnFragmentInt
 
 
     private fun fillTasks() {
-        question_name = intent.getStringArrayListExtra("question_name")
-        body = intent.getStringArrayListExtra("body")
-        solution = intent.getStringArrayListExtra("solution")
-        task = intent.getStringArrayListExtra("task")
-        the_text = intent.getStringArrayListExtra("the_text")
-        answer = intent.getStringArrayListExtra("answer")
-        type = intent.getStringArrayListExtra("type")
-        question_id = intent.getStringArrayListExtra("question_id")
-        category_id = intent.getStringArrayListExtra("category_id")
+        question_name = intent.getStringArrayListExtra("question_name") as ArrayList<String>
+        body = intent.getStringArrayListExtra("body") as ArrayList<String>
+        solution = intent.getStringArrayListExtra("solution") as ArrayList<String>
+        task = intent.getStringArrayListExtra("task") as ArrayList<String>
+        the_text = intent.getStringArrayListExtra("the_text") as ArrayList<String>
+        answer = intent.getStringArrayListExtra("answer") as ArrayList<String>
+        type = intent.getStringArrayListExtra("type") as ArrayList<String>
+        question_id = intent.getStringArrayListExtra("question_id") as ArrayList<String>
+        category_id = intent.getStringArrayListExtra("category_id") as ArrayList<String>
         addToArray()
     }
 
@@ -438,9 +438,9 @@ class TestsActivity : AppCompatActivity(), QuestionNumbersFragment.OnFragmentInt
     }
 
     internal fun initializeSettings() {
-        subject_prefix = intent.getStringExtra("subject_prefix")
+        subject_prefix = intent.getStringExtra("subject_prefix").toString()
 
-        section = intent.getStringExtra("section")
+        section = intent.getStringExtra("section").toString()
 
         val countPref = getSharedPreferences("subjects_questions_count", AppCompatActivity.MODE_PRIVATE)
         questionsCount = countPref.getInt(subject_prefix + "_questions_count", 0)
@@ -455,7 +455,7 @@ class TestsActivity : AppCompatActivity(), QuestionNumbersFragment.OnFragmentInt
             supportActionBar?.setTitle("Задание №$themePosition")
         } else if (section.contentEquals("Режим экзамена")) {
             var title = intent.getStringExtra("subject_name")
-            title = if (title.contains(":")) title.split(": ")[0] else title.split(" ")[0]
+            title = if (title!!.contains(":")) title.split(": ")[0] else title.split(" ")[0]
             supportActionBar?.title = "Режим экзамена.$title"
         }
 

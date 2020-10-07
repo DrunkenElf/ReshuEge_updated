@@ -53,8 +53,8 @@ class DownloadIntService : IntentService("DownloadIntService"){
     }
 
     override fun onHandleIntent(intent: Intent?) {
-        subject_prefix = intent!!.getStringExtra("prefix")
-        name = intent.getStringExtra("name")
+        subject_prefix = intent!!.getStringExtra("prefix").toString()
+        name = intent.getStringExtra("name").toString()
         intent.action = "done"
         val settingsPref = PreferenceManager.getDefaultSharedPreferences(this)
         download_pictures = settingsPref.getBoolean("download_pictures", false)
@@ -210,7 +210,7 @@ class DownloadIntService : IntentService("DownloadIntService"){
                 .retry(2)
                 .subscribe(
                         { result -> print(result.index) },
-                        { error -> Log.d("ERROR", error.message)},
+                        { error -> Log.d("ERROR", error.message.toString())},
                         { LocalBroadcastManager.getInstance(applicationContext)
                                 .sendBroadcast(intent!!.putExtra("broadcastMessage", onLoadFinish())) }
                 )

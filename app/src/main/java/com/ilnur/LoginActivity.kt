@@ -25,6 +25,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 
 import com.bumptech.glide.Glide
@@ -48,16 +49,21 @@ import com.ilnur.DownloadTasks.Update
 import com.ilnur.Session.Session
 import com.ilnur.Session.SessionState
 import com.ilnur.Session.Settings
+import com.ilnur.viewModel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A login screen that offers login via email/password.
  */
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-    internal lateinit var context: Context
+    //internal lateinit var context: Context
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private var mAuthTask: UserLoginTask? = null
+    val viewModel: LoginViewModel by viewModels()
+
+    //private var mAuthTask: UserLoginTask? = null
 
     // UI references.
     private var mEmailView: AutoCompleteTextView? = null
@@ -98,7 +104,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         // Set up the login form.
 
-        context = this
+        //viewModel.addMainSubjs()
+
+        //context = this
         val settings = Settings()
         group_main = findViewById(R.id.group_main)
         group_anim = findViewById(R.id.group_anim)
@@ -161,7 +169,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         mEmailSignInButton.setOnClickListener { view ->
-            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken,
                     InputMethodManager.HIDE_NOT_ALWAYS)
             attemptLogin()
@@ -170,8 +178,8 @@ class LoginActivity : AppCompatActivity() {
         mSkipButton.setOnClickListener {
             val sessionObject = Session("", SessionState.anonymus)
             val settings = Settings()
-            settings.setSession(sessionObject, context)
-            settings.setLoginAndPassword("", "", context)
+            settings.setSession(sessionObject, this)
+            settings.setLoginAndPassword("", "", this)
             try {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 if (currentFocus != null)
@@ -179,12 +187,13 @@ class LoginActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-            Update(context,true).doInBackground()
+            startActivity(Intent(this, MainMenu::class.java))
+            //Update(context,true).doInBackground()
             //finish()
         }
 
         signUpButton.setOnClickListener {
-            val intent = Intent(context, SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             if (Build.VERSION.SDK_INT > 20) {
                 val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
                 startActivity(intent, options.toBundle())
@@ -208,9 +217,7 @@ class LoginActivity : AppCompatActivity() {
      * errors are presented and no actual login attempt is made.
      */
     private fun attemptLogin() {
-        if (mAuthTask != null) {
-            return
-        }
+
 
         val logg = findViewById<TextInputLayout>(R.id.input_email)
         val pass = findViewById<TextInputLayout>(R.id.input_password)
@@ -265,8 +272,8 @@ class LoginActivity : AppCompatActivity() {
             //pass.setVisibility(View.GONE);
 
             showProgress(true, false)
-            mAuthTask = UserLoginTask(email, password)
-            mAuthTask!!.execute(null as Void?)
+            //mAuthTask = UserLoginTask(email, password)
+            //mAuthTask!!.execute(null as Void?)
         }
     }
 
@@ -360,7 +367,7 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
-     */
+     *//*
     inner class UserLoginTask internal constructor(private val mEmail: String, private val mPassword: String) : AsyncTask<Void, Void, String>() {
         private var serverError = false
 
@@ -411,15 +418,15 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             } catch (ioe: IOException) {
-                Log.i("errorLOG", ioe.message)
+                Log.i("errorLOG", ioe.message.toString())
                 serverError = true
                 return ""
             } catch (jse: JSONException) {
-                Log.i("errorLOG", jse.message)
+                Log.i("errorLOG", jse.message.toString())
                 serverError = false
                 return ""
             } catch (e: Exception) {
-                Log.i("errorLOG", e.message)
+                Log.i("errorLOG", e.message.toString())
                 serverError = true
                 return ""
             }
@@ -436,17 +443,17 @@ class LoginActivity : AppCompatActivity() {
             val r = Runnable {
                 showProgress(false, false)
                 if (!Connection.hasConnectionMain(context, true)) {
-                    /*Session sessionObject = new Session("", SessionState.anonymus);
+                    *//*Session sessionObject = new Session("", SessionState.anonymus);
                             Settings settings = new Settings();
                             settings.setSession(sessionObject, context);
-                            settings.setLoginAndPassword("", "", context);*/
+                            settings.setLoginAndPassword("", "", context);*//*
                     Toast.makeText(context, "Для авторизации необобходимо подключение к интернету", Toast.LENGTH_SHORT).show()
                 } else
                 //what ever you do here will be done after 3 seconds delay.
                     if (session != "") {
                         val sessionObject = Session(session, SessionState.authorized)
                         val settings = Settings()
-                        settings.setSession(sessionObject, context)
+                        settings.setSession(sessionObject, this)
                         settings.setLoginAndPassword(mEmail, mPassword, context)
                         MyDB.updateUser(mEmail, mPassword, session)
                         Update(context,true).doInBackground()
@@ -464,7 +471,7 @@ class LoginActivity : AppCompatActivity() {
             handler.postDelayed(r, 2200)
 
 
-            /* if (!session.equals("")) {
+            *//* if (!session.equals("")) {
                 Session sessionObject = new Session(session, SessionState.authorized);
                 Settings settings = new Settings();
                 settings.setSession(sessionObject, context);
@@ -479,7 +486,7 @@ class LoginActivity : AppCompatActivity() {
                     mPasswordView.setError(getString(R.string.error_incorrect_password));
                     mPasswordView.requestFocus();
                 }
-            }*/
+            }*//*
         }
 
         override fun onCancelled() {
@@ -501,7 +508,7 @@ class LoginActivity : AppCompatActivity() {
             ad.show()
         }
     }
-
+*/
     companion object {
 
         /**

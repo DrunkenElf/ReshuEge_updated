@@ -100,8 +100,8 @@ class ForegroundService1 : Service() {
             start()
         }
         //return super.onStartCommand(intent, flags, startId)
-        subject_prefix = intent!!.getStringExtra("prefix")
-        name = intent.getStringExtra("name")
+        subject_prefix = intent!!.getStringExtra("prefix").toString()
+        name = intent.getStringExtra("name").toString()
         val settingsPref = PreferenceManager.getDefaultSharedPreferences(this)
         download_pictures = settingsPref.getBoolean("download_pictures", false)
 

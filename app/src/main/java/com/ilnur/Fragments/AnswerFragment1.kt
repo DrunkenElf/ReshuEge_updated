@@ -183,24 +183,24 @@ class AnswerFragment1 : Fragment() {
             }
             if (token != "" ) {
                 if (images.get(questionNumber) != null && images.get(questionNumber)!!.bitmap!=  null) {
-                    val lay = this@AnswerFragment1.view!!.findViewById<LinearLayout>(R.id.image_lay)
+                    val lay = view!!.findViewById<LinearLayout>(R.id.image_lay)
                     lay.visibility = View.VISIBLE
                     val options = BitmapFactory.Options()
                     options.inSampleSize = 4
                     val s = images.get(questionNumber)
                     s!!.bitmap = BitmapFactory.decodeFile(currentPhotoPath, options)
-                    val img_view = this@AnswerFragment1.view!!.findViewById<View>(R.id.preload) as ImageView
+                    val img_view = view!!.findViewById<View>(R.id.preload) as ImageView
                     img_view.visibility = View.VISIBLE
                     img_view.setImageBitmap(s!!.bitmap)
                     images.put(questionNumber, s!!)
                 } else {
-                    val lay = this@AnswerFragment1.view!!.findViewById<LinearLayout>(R.id.image_lay)
+                    val lay = view!!.findViewById<LinearLayout>(R.id.image_lay)
                     lay.visibility = View.VISIBLE
                     val options = BitmapFactory.Options()
                     options.inSampleSize = 4
                     val s = TaskImage(id_task, setMasked(id_task), File(currentPhotoPath).name, currentPhotoPath)
                     s!!.bitmap = BitmapFactory.decodeFile(currentPhotoPath, options)
-                    val img_view = this@AnswerFragment1.view!!.findViewById<View>(R.id.preload) as ImageView
+                    val img_view = view!!.findViewById<View>(R.id.preload) as ImageView
                     img_view.visibility = View.VISIBLE
                     img_view.setImageBitmap(s!!.bitmap)
                     images.put(questionNumber, s!!)
@@ -234,36 +234,36 @@ class AnswerFragment1 : Fragment() {
             setMasked(id_task)
             Log.d("or & Mas", id_task + " " + setMasked(id_task))
             if (images.get(questionNumber) != null && images.get(questionNumber)!!.bitmap != null) {
-                view!!.findViewById<LinearLayout>(R.id.image_lay).visibility = View.VISIBLE
+                requireView().findViewById<LinearLayout>(R.id.image_lay).visibility = View.VISIBLE
 
-                val img_view = view!!.findViewById<View>(R.id.preload) as ImageView
+                val img_view = requireView().findViewById<View>(R.id.preload) as ImageView
                 img_view.visibility = View.VISIBLE
                 img_view.setImageBitmap(images.get(questionNumber)!!.bitmap)
             } else {
-                view!!.findViewById<LinearLayout>(R.id.image_lay).visibility = View.GONE
+                requireView().findViewById<LinearLayout>(R.id.image_lay).visibility = View.GONE
 
             }
         }
-        val answerText = view!!.findViewById<View>(R.id.answerText) as EditText
+        val answerText = requireView().findViewById<View>(R.id.answerText) as EditText
         answerText.setText("")
         answerText.isEnabled = true
-        val answerButton = activity!!.findViewById<View>(R.id.answerButton) as Button
-        val nextButton = activity!!.findViewById<View>(R.id.nextButton) as Button
-        val commentButton = activity!!.findViewById<View>(R.id.commentButton) as Button
+        val answerButton = requireActivity().findViewById<View>(R.id.answerButton) as Button
+        val nextButton = requireActivity().findViewById<View>(R.id.nextButton) as Button
+        val commentButton = requireActivity().findViewById<View>(R.id.commentButton) as Button
         answerButton.visibility = View.VISIBLE
         nextButton.visibility = View.GONE
         commentButton.visibility = View.GONE
     }
 
     fun setYourAnswer(yourAnswer: String) {
-        val answerText = view!!.findViewById<View>(R.id.answerText) as EditText
+        val answerText = requireView().findViewById<View>(R.id.answerText) as EditText
         answerText.setText("Ваш ответ: $yourAnswer")
         answerText.isEnabled = false
-        val answerButton = activity!!.findViewById<View>(R.id.answerButton) as Button
-        val nextButton = activity!!.findViewById<View>(R.id.nextButton) as Button
-        val commentButton = activity!!.findViewById<View>(R.id.commentButton) as Button
-        val pointSpinner = view!!.findViewById<View>(R.id.pointSpinner) as Spinner
-        val pointsButton = view!!.findViewById<View>(R.id.pointsButton) as Button
+        val answerButton = requireActivity().findViewById<View>(R.id.answerButton) as Button
+        val nextButton = requireActivity().findViewById<View>(R.id.nextButton) as Button
+        val commentButton = requireActivity().findViewById<View>(R.id.commentButton) as Button
+        val pointSpinner = requireView().findViewById<View>(R.id.pointSpinner) as Spinner
+        val pointsButton = requireView().findViewById<View>(R.id.pointsButton) as Button
         answerButton.visibility = View.GONE
         nextButton.visibility = View.VISIBLE
         pointSpinner.visibility = View.GONE
@@ -276,7 +276,7 @@ class AnswerFragment1 : Fragment() {
 
     private fun checkAnswer(answer: String, type: Int, category: Int) {
         var answer = answer
-        val answerText = view!!.findViewById<View>(R.id.answerText) as EditText
+        val answerText = requireView().findViewById<View>(R.id.answerText) as EditText
         var yourAnswer = answerText.text.toString()
 
         //answer = answer.toLowerCase();
@@ -299,7 +299,7 @@ class AnswerFragment1 : Fragment() {
             if (yourAnswer.contentEquals("Не решено")) color = "white"
             sendResult(pointObj.checkAnswer(), yourAnswer, point, pluses, color!!)
         } else {
-            val pointSpinner = activity!!.findViewById<View>(R.id.pointSpinner) as Spinner
+            val pointSpinner = requireActivity().findViewById<View>(R.id.pointSpinner) as Spinner
             val point = pointSpinner.selectedItemPosition
             if (images.get(questionNumber) != null) {
                 if (questionNumber < pointObj.task_count()) {
@@ -336,22 +336,22 @@ class AnswerFragment1 : Fragment() {
 
     fun setButtonsVisibility(type: Int) {
         Log.d("setButtVis", "ANS")
-        val load_img = activity!!.findViewById<View>(R.id.load_img) as Button
-        val answerButton = activity!!.findViewById<View>(R.id.answerButton) as Button
-        val nextButton = activity!!.findViewById<View>(R.id.nextButton) as Button
-        val commentButton = activity!!.findViewById<View>(R.id.commentButton) as Button
-        val answerText = view!!.findViewById<View>(R.id.answerText) as EditText
-        val pointSpinner = view!!.findViewById<View>(R.id.pointSpinner) as Spinner
-        val pointsButton = view!!.findViewById<View>(R.id.pointsButton) as Button
+        val load_img = requireActivity().findViewById<View>(R.id.load_img) as Button
+        val answerButton = requireActivity().findViewById<View>(R.id.answerButton) as Button
+        val nextButton = requireActivity().findViewById<View>(R.id.nextButton) as Button
+        val commentButton = requireActivity().findViewById<View>(R.id.commentButton) as Button
+        val answerText = requireView().findViewById<View>(R.id.answerText) as EditText
+        val pointSpinner = requireView().findViewById<View>(R.id.pointSpinner) as Spinner
+        val pointsButton = requireView().findViewById<View>(R.id.pointsButton) as Button
 
         if (type == 3) {
             if (images.get(questionNumber) != null && images.get(questionNumber)!!.bitmap != null && token != "") {
-                view!!.findViewById<LinearLayout>(R.id.image_lay).visibility = View.VISIBLE
+                requireView().findViewById<LinearLayout>(R.id.image_lay).visibility = View.VISIBLE
 
-                val img_view = view!!.findViewById<View>(R.id.preload) as ImageView
+                val img_view = requireView().findViewById<View>(R.id.preload) as ImageView
                 img_view.setImageBitmap(images.get(questionNumber)!!.bitmap)
             } else {
-                view!!.findViewById<LinearLayout>(R.id.image_lay).visibility = View.GONE
+                requireView().findViewById<LinearLayout>(R.id.image_lay).visibility = View.GONE
                 //view!!.findViewById<View>(R.id.preload).visibility = View.GONE
             }
 
@@ -372,7 +372,7 @@ class AnswerFragment1 : Fragment() {
                 pointsArray.add(Integer.toString(i))
             }
 
-            val adapter = ArrayAdapter(activity!!, android.R.layout.simple_spinner_item, pointsArray)
+            val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, pointsArray)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             pointSpinner.adapter = adapter
             if (token != "")
@@ -388,7 +388,7 @@ class AnswerFragment1 : Fragment() {
             pointsButton.visibility = View.GONE
             answerText.visibility = View.VISIBLE
             load_img.visibility = View.GONE
-            view!!.findViewById<LinearLayout>(R.id.image_lay).visibility = View.GONE
+            requireView().findViewById<LinearLayout>(R.id.image_lay).visibility = View.GONE
         }
 
 
@@ -410,7 +410,7 @@ class AnswerFragment1 : Fragment() {
             startActivityForResult(intent, 221)*/
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                 // Ensure that there's a camera activity to handle the intent
-                takePictureIntent.resolveActivity(context!!.packageManager)?.also {
+                takePictureIntent.resolveActivity(requireContext().packageManager)?.also {
                     // Create the File where the photo should go
                     val photoFile: File? = try {
                         createImageFile(id_task)
@@ -422,7 +422,7 @@ class AnswerFragment1 : Fragment() {
                     // Continue only if the File was successfully created
                     photoFile?.also {
                         val photoURI: Uri = FileProvider.getUriForFile(
-                                this.context!!,
+                                this.requireContext(),
                                 "com.reshuege.android.fileprovider",
                                 it
                         )
@@ -441,7 +441,7 @@ class AnswerFragment1 : Fragment() {
         val answerButton = v.findViewById<View>(R.id.answerButton) as Button
         answerButton.setOnClickListener { v ->
             checkAnswer(answer, type, category)
-            val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(v.windowToken,
                     InputMethodManager.HIDE_NOT_ALWAYS)
         }
@@ -459,7 +459,7 @@ class AnswerFragment1 : Fragment() {
         // Get safe storage directory for photos
         // Use `getExternalFilesDir` on Context to access package-specific directories.
         // This way, we don't need to request external read/write runtime permissions.
-        val mediaStorageDir = File(context!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "APP_TAG")
+        val mediaStorageDir = File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "APP_TAG")
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
@@ -475,7 +475,7 @@ class AnswerFragment1 : Fragment() {
     private fun createImageFile(name: String): File {
         // Create an image file name
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir: File = context!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        val storageDir: File = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
         return File.createTempFile(
                 "JPEG_${timeStamp}_", /* prefix */
                 ".jpg", /* suffix */
@@ -489,17 +489,19 @@ class AnswerFragment1 : Fragment() {
     internal fun initializeSettings() {
         val settingsPref = PreferenceManager.getDefaultSharedPreferences(activity)
 
-        val section = activity!!.intent.getStringExtra("section")
+        val section = requireActivity().intent.getStringExtra("section")
 
-        if (section.contentEquals("Варианты") || section.contentEquals("Каталог заданий"))
-            show_comment = settingsPref.getBoolean("show_comment", false)
-        else if (section.contentEquals("Режим экзамена")) show_comment = false
+        if (section != null) {
+            if (section.contentEquals("Варианты") || section.contentEquals("Каталог заданий"))
+                show_comment = settingsPref.getBoolean("show_comment", false)
+            else if (section.contentEquals("Режим экзамена")) show_comment = false
+        }
     }
 
     internal fun initializePoints() {
-        val subject_prefix = activity!!.intent.getStringExtra("subject_prefix")
+        val subject_prefix = requireActivity().intent.getStringExtra("subject_prefix")
         //points = getResources().getStringArray(getResources().getIdentifier(subject_prefix + "_points", "array", getActivity().getPackageName()));
-        pointObj = FirstPoint(subject_prefix)
+        pointObj = FirstPoint(subject_prefix.toString())
     }
 
     private fun findUnAskedPermissions(wanted: ArrayList<String>): ArrayList<String>? {
@@ -515,14 +517,14 @@ class AnswerFragment1 : Fragment() {
     private fun hasPermission(permission: String): Boolean {
         if (canMakeSmores()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                return ActivityCompat.checkSelfPermission(context!!, permission) == PackageManager.PERMISSION_GRANTED
+                return ActivityCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED
             }
         }
         return true
     }
 
     private fun showMessageOKCancel(message: String, okListener: DialogInterface.OnClickListener) {
-        AlertDialog.Builder(context!!)
+        AlertDialog.Builder(requireContext())
                 .setMessage(message)
                 .setPositiveButton("OK", okListener)
                 .setNegativeButton("Cancel", null)
