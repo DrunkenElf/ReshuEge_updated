@@ -14,7 +14,9 @@ import androidx.transition.TransitionManager
 import androidx.transition.Visibility
 
 import android.os.Handler
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.transition.Slide
 import android.util.Log
 import android.view.*
@@ -27,6 +29,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
+import androidx.lifecycle.lifecycleScope
 
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
@@ -49,8 +52,12 @@ import com.ilnur.DownloadTasks.Update
 import com.ilnur.Session.Session
 import com.ilnur.Session.SessionState
 import com.ilnur.Session.Settings
+import com.ilnur.utils.SettingsImp
+import com.ilnur.viewModel.LoginState
 import com.ilnur.viewModel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * A login screen that offers login via email/password.
@@ -63,39 +70,42 @@ class LoginActivity : AppCompatActivity() {
      */
     val viewModel: LoginViewModel by viewModels()
 
+    @Inject
+    lateinit var settings: SettingsImp
     //private var mAuthTask: UserLoginTask? = null
 
     // UI references.
-    private var mEmailView: AutoCompleteTextView? = null
+    lateinit var mEmailView: AutoCompleteTextView
     private var mPasswordView: EditText? = null
+
     //Placeholder holder;
     internal lateinit var group_main: Group
     internal lateinit var group_anim: Group
+
     //private View mProgressView;
     //private View mLoginFormView;
     private fun setupAnim() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            with(window) {
-                requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-                val toRight = Slide()
-                toRight.slideEdge = Gravity.RIGHT
-                toRight.duration = 300
 
-                val toLeft = Slide()
-                toLeft.slideEdge = Gravity.LEFT
-                toLeft.duration = 300
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            val toRight = Slide()
+            toRight.slideEdge = Gravity.RIGHT
+            toRight.duration = 300
 
-                //когда переходишь на новую
-                exitTransition = toRight
-                enterTransition = toRight
+            val toLeft = Slide()
+            toLeft.slideEdge = Gravity.LEFT
+            toLeft.duration = 300
 
-                //когда нажимаешь с другого назад и открываешь со старого
-                returnTransition = toRight
-                reenterTransition = toRight
-            }
+            //когда переходишь на новую
+            exitTransition = toRight
+            enterTransition = toRight
+
+            //когда нажимаешь с другого назад и открываешь со старого
+            returnTransition = toRight
+            reenterTransition = toRight
         }
-    }
 
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,24 +117,7 @@ class LoginActivity : AppCompatActivity() {
         //viewModel.addMainSubjs()
 
         //context = this
-        val settings = Settings()
-        group_main = findViewById(R.id.group_main)
-        group_anim = findViewById(R.id.group_anim)
-        mEmailView = findViewById<View>(R.id.email) as AutoCompleteTextView
-        mEmailView!!.setText(settings.getLogin(this))
 
-        mEmailView!!.setOnEditorActionListener { v, id, event ->
-            if (id == EditorInfo.IME_ACTION_DONE) {
-                true
-            }
-            false
-        }
-        mEmailView!!.setOnKeyListener { v, id, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && id == KeyEvent.KEYCODE_ENTER) {
-                true
-            }
-            false
-        }
         Glide.with(this)
                 .load(R.drawable.ball)
                 .timeout(10)
@@ -137,10 +130,33 @@ class LoginActivity : AppCompatActivity() {
                 .into(findViewById<View>(R.id.packman) as ImageView)
 
 
-        val mEmailSignInButton = findViewById<View>(R.id.email_sign_in_button) as Button
-        val mSkipButton = findViewById<View>(R.id.skip_button) as Button
-        val signUpButton = findViewById<View>(R.id.sign_up) as Button
-        mPasswordView = findViewById<View>(R.id.password) as EditText
+        setupViews()
+
+        viewModel.loginResult.observe(this, {
+            it?.let {
+                Log.d("loginRES OBS", it.toString())
+                when (it) {
+                    LoginState.SUCCESS -> {
+                        lifecycleScope.launch { settings.setLogged(true) }
+                        startActivity(Intent(this, MainMenu::class.java))
+                    }
+                    LoginState.ERROR -> {
+                    }
+                    LoginState.NO_INTERNET -> {
+                    }
+                    LoginState.WRONG_LOG_OR_PAS -> {
+                    }
+                    else -> Log.d("Nothing has happened", "уляля")
+                }
+                Log.d("THe last", it.toString())
+            }
+        })
+
+        viewModel.loginFormState.observe(this, {
+            it?.let {
+                Log.d("loginFORM OBS", it.toString())
+            }
+        })
         /* mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -151,63 +167,118 @@ class LoginActivity : AppCompatActivity() {
                 return false;
             }
         });*/
-        mPasswordView!!.setText(settings.getPassword(this))
 
-        mPasswordView!!.setOnEditorActionListener { v, id, event ->
-            if (id == EditorInfo.IME_ACTION_DONE) {
-                mEmailSignInButton.performClick()
-                true
-            }
-            false
-        }
-        mPasswordView!!.setOnKeyListener { v, id, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && id == KeyEvent.KEYCODE_ENTER) {
-                //mEmailSignInButton.performClick();
-                true
-            }
-            false
-        }
-
-        mEmailSignInButton.setOnClickListener { view ->
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS)
-            attemptLogin()
-        }
-
-        mSkipButton.setOnClickListener {
-            val sessionObject = Session("", SessionState.anonymus)
-            val settings = Settings()
-            settings.setSession(sessionObject, this)
-            settings.setLoginAndPassword("", "", this)
-            try {
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                if (currentFocus != null)
-                imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            startActivity(Intent(this, MainMenu::class.java))
-            //Update(context,true).doInBackground()
-            //finish()
-        }
-
-        signUpButton.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            if (Build.VERSION.SDK_INT > 20) {
-                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
-                startActivity(intent, options.toBundle())
-            } else {
-                startActivity(intent)
-            }
-
-        }
 
         //mLoginFormView = findViewById(R.id.login_form);
         //mProgressView = findViewById(R.id.login_progress);
         /*SubjInfo si = new SubjInfo();
         si.context = context;
         si.check_subject_data();*/
+    }
+
+    private val loginWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(login = p0.toString()))
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+        }
+
+    }
+    private val passwordWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(password = p0.toString()))
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+        }
+
+    }
+
+    fun setupViews() {
+        group_main = findViewById(R.id.group_main)
+        group_anim = findViewById(R.id.group_anim)
+        mEmailView = findViewById<View>(R.id.email) as AutoCompleteTextView
+
+        mEmailView.addTextChangedListener(loginWatcher)
+
+        val mEmailSignInButton = findViewById<View>(R.id.email_sign_in_button) as Button
+        val mSkipButton = findViewById<View>(R.id.skip_button) as Button
+        val signUpButton = findViewById<View>(R.id.sign_up) as Button
+        mPasswordView = findViewById<View>(R.id.password) as EditText
+
+        mPasswordView!!.addTextChangedListener(passwordWatcher)
+
+        mEmailView.setText(viewModel.loginFormState.value!!.login)
+
+        mPasswordView!!.setText(viewModel.loginFormState.value!!.password)
+
+        mPasswordView!!.setOnEditorActionListener { _, id, _ ->
+            if (id == EditorInfo.IME_ACTION_DONE) {
+                mEmailSignInButton.performClick()
+                true
+            }
+            false
+        }
+        viewModel.loginFormState.observe(this, {
+            when (it.checking) {
+                true -> if (mEmailSignInButton.isEnabled) {
+                    mEmailSignInButton.isEnabled = false
+                }
+                false -> {
+                    if (!mEmailSignInButton.isEnabled)
+                        mEmailSignInButton.isEnabled = true
+                }
+            }
+        })
+        //mEmailSignInButton.
+        mEmailSignInButton.setOnClickListener { view ->
+            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS)
+
+            ///mEmailSignInButton.isClickable = false //turned off button
+            viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(checking = true))
+
+            viewModel.login(viewModel.loginFormState.value!!.login, viewModel.loginFormState.value!!.password)
+            attemptLogin()
+        }
+
+        mSkipButton.setOnClickListener {
+            val sessionObject = Session("", SessionState.anonymus)
+
+
+            try {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                if (currentFocus != null)
+                    imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+            val intent = Intent(this, MainMenu::class.java)
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
+            startActivity(intent, options.toBundle())
+
+            //this.finishAfterTransition()
+            //Update(context,true).doInBackground()
+            //finish()
+        }
+
+        signUpButton.setOnClickListener {
+            /*val intent = Intent(this, SignUpActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
+            startActivity(intent, options.toBundle())*/
+        }
     }
 
 
@@ -263,7 +334,7 @@ class LoginActivity : AppCompatActivity() {
             try {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 if (currentFocus != null)
-                imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+                    imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -515,6 +586,7 @@ class LoginActivity : AppCompatActivity() {
          * Id to identity READ_CONTACTS permission request.
          */
         private val REQUEST_READ_CONTACTS = 0
+
         /**
          * A dummy authentication store containing known user names and passwords.
          * TODO: remove after connecting to a real authentication system.

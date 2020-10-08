@@ -19,6 +19,8 @@ class MainRepository @Inject constructor(
 
     suspend fun launchCheck() = downloaders.getNewestTests()
 
+    suspend fun getSubject(href: String) = downloaders.getSubject(href)
+
 
     fun getSubjects(): List<SubjectMain> = db.subjectMainDao().getSubjects()
 

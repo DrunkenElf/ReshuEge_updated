@@ -58,7 +58,10 @@ class MainViewModel @ViewModelInject constructor(private val repository: MainRep
     }
 
     fun launchCheck(){
-        CoroutineScope(Dispatchers.IO).launch {repository.launchCheck()}
+        CoroutineScope(Dispatchers.IO).launch {
+            //repository.launchCheck()
+            repository.getSubject("mathb")
+        }
     }
 
     val _currentSubj = MutableLiveData<SubjectMain>()

@@ -15,6 +15,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -66,8 +67,11 @@ object RetrofitModule {
         logger.level = HttpLoggingInterceptor.Level.NONE
         return OkHttpClient.Builder()
                 .addInterceptor(logger)
-                .readTimeout(100, TimeUnit.SECONDS)
-                .connectTimeout(100, TimeUnit.SECONDS)
+            //.cache(Cache(directory = File(application.cacheDir, "http_cache"),
+            //          // $0.05 worth of phone storage in 2020
+            //          maxSize = 50L * 1024L * 1024L))
+                //.readTimeout(1000, TimeUnit.SECONDS)
+                //.connectTimeout(100, TimeUnit.SECONDS)
                 .build()
     }
 

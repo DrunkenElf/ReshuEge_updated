@@ -2,6 +2,8 @@ package com.ilnur.backend
 
 import com.ilnur.DataBase.AppDatabase
 import com.ilnur.DataBase.Task
+import okhttp3.ResponseBody
+import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -30,6 +32,8 @@ class ApiRequestsImp @Inject constructor(val api: API, val db: AppDatabase) : Ap
     suspend fun getTask(href: String, data: Int): Response<ResponseTask> =
             api.getTask(get_task(href = href, data = data))
 
+     fun getImage(url: String, callback: Callback<ResponseBody>)= api.getImage(url).enqueue(callback)
+
 }
 
 fun get_predefined(href: String, type: String = "predefined_tests") =
@@ -41,7 +45,7 @@ fun get_testsKeys(href: String, type: String = "get_test", id: Int) =
 fun get_task(href: String, type: String = "get_task", data: Int) =
         "https://$href-ege.sdamgia.ru/api?type=$type&data=$data&protocolVersion=1"
 
-fun TaskResp.toTask(href: String, variant: Int) = Task(
+/*fun TaskResp.toTask(href: String, variant: Int) = Task(
         variant = variant,
         subj = href,
         stamp = stamp,
@@ -51,7 +55,7 @@ fun TaskResp.toTask(href: String, variant: Int) = Task(
         category = category,
         body = body, solution = solution, base_id = base_id, answer = answer,
         likes = convertLikes(likes!!)
-)
+)*/
 
 fun convertLikes(likes: List<Int>): String {
     val builder = StringBuilder()

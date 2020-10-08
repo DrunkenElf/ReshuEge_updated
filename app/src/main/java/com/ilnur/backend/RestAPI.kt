@@ -4,11 +4,11 @@ import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
-import retrofit2.http.Url
+import retrofit2.http.*
 
 //https://mathb-ege.sdamgia.ru/api?type=get_test&id=10687172&protocolVersion=1 getTest tasks id
 //https://mathb-ege.sdamgia.ru/api?type=predefined_tests&protocolVersion=1 return id with
@@ -32,6 +32,10 @@ interface API {
 
     @GET
     suspend fun getTask(@Url url: String): Response<ResponseTask>
+
+    @GET
+    @Streaming
+    fun getImage(@Url url: String): Call<ResponseBody>
 }
 
 @Keep
@@ -49,14 +53,14 @@ data class ResponseTask(
 
 @Keep
 data class TaskResp(
-        @SerializedName("stamp") val stamp: String?,
+        @SerializedName("stamp") val stamp: String?,//
         @SerializedName("id") val id: Int,
         @SerializedName("type")  val type: Int,
         @SerializedName("task") val task: Int,
         @SerializedName("category") val category: Int,
         @SerializedName("body")  val body: String?,
         @SerializedName("solution") val solution: String?,
-        @SerializedName("base_id")  val base_id: Int?,
+        @SerializedName("base_id")  val base_id: String?,
         @SerializedName("answer")  val answer: String?,
         @SerializedName("likes")  val likes: List<Int>?
 )

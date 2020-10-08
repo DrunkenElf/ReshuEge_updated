@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 @Keep
 @Entity(tableName = "tasks", primaryKeys = ["variant", "subj"])
 data class Task(
-        @SerializedName("variant") @ColumnInfo(name = "variant") var variant: Int,
+        @SerializedName("variant") @ColumnInfo(name = "variant") var variant: String,
         @SerializedName("subj") @ColumnInfo(name = "subj") val subj: String,
         @SerializedName("stamp") @ColumnInfo(name = "stamp") val stamp: String?,
         @SerializedName("id") @ColumnInfo(name = "id") val id: Int,
@@ -19,7 +19,7 @@ data class Task(
         @SerializedName("category") @ColumnInfo(name = "category") val category: Int,
         @SerializedName("body") @ColumnInfo(name = "body") val body: String?,
         @SerializedName("solution") @ColumnInfo(name = "solution") val solution: String?,
-        @SerializedName("base_id") @ColumnInfo(name = "base_id") val base_id: Int?,
+        @SerializedName("base_id") @ColumnInfo(name = "base_id") val base_id: String?,
         @SerializedName("answer") @ColumnInfo(name = "answer") val answer: String?,
         @SerializedName("likes") @ColumnInfo(name = "likes") val likes: String?
 )

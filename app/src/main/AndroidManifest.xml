@@ -79,6 +79,7 @@
         <activity
             android:name="com.ilnur.LoginActivity"
             android:label="@string/title_activity_login"
+            android:noHistory="true"
             android:theme="@style/AppTheme.Login" >
         </activity>
         <activity android:name="com.ilnur.StatisticsActivity"
