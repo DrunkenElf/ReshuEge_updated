@@ -4,8 +4,10 @@ package com.ilnur
 //import vdd.test.Fragments.SubjectsFragment;
 import android.annotation.SuppressLint
 import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.os.*
 import android.transition.Slide
@@ -22,12 +24,14 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 //import androidx.navigation.NavController
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.ilnur.Adapters.SubjAdapter
 //import com.ilnur.DataBase.MyDB1
 import com.ilnur.DataBase.QuestionsDataBaseHelper
 import com.ilnur.DownloadTasks.*
@@ -38,10 +42,7 @@ import com.ilnur.Session.Settings
 import com.ilnur.backend.Downloaders
 import com.ilnur.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.lang.Runnable
 import java.util.*
 import javax.inject.Inject
@@ -51,9 +52,11 @@ import kotlin.coroutines.coroutineContext
 class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, SubjectsFragment.OnFragmentInteractionListener, StartPageFragment.OnFragmentInteractionListener, SubjectsTheoryFragment.OnFragmentInteractionListener, SubjectSearchFragment.OnFragmentInteractionListener, SubjectThemesFragment.OnFragmentInteractionListener {
 
     val viewModel: MainViewModel by viewModels()
-    @Inject lateinit var downloader: Downloaders
+
+    @Inject
+    lateinit var downloader: Downloaders
     //internal val viewModel = Stack<String>()
-    internal lateinit var context: Context
+    //internal lateinit var context: Context
     private var mHandler: Handler? = null
     lateinit var fragment: Fragment
 
@@ -106,6 +109,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
             // Register the channel with the system
             notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+            //startForegroundService()
         }
     }
 
@@ -115,6 +119,22 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         })
     }
 
+    fun serReceiver() {
+        val receiver = BroadIntReceiver()
+        val intentFilter = IntentFilter()
+        intentFilter.addAction("done")
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter)
+    }
+
+
+    class BroadIntReceiver(): BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val res = intent!!.getBooleanExtra("broadcastMessage", false)
+            Log.d("BROAD", res.toString())
+            //adapter.notifyDataSetChanged()
+        }
+    }
 
     //@SuppressLint("RestrictedApi")
     @SuppressLint("RestrictedApi")
@@ -122,12 +142,15 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         super.onCreate(savedInstanceState)
         createNotificationChannel()
         setupAnim()
-        setContentView(R.layout.activity_main_menu)
 
+         serReceiver()
+        setContentView(R.layout.activity_main_menu)
+        //serReceiver()
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
         viewModel.launchCheck()
+        //viewModel.getAllSubjects()
 
         observeTitle()
 
@@ -265,7 +288,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 hideStartPage()
             }
             R.id.nav_news -> {
-                if (Connection.hasConnection(context)) {
+                if (Connection.hasConnection(this)) {
                     val downloadNews = DownloadNews(this)
                     downloadNews.execute()
                 }
@@ -389,7 +412,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 if (session.sessionState == SessionState.anonymus) {
                     showAuthorizeMessage("Требуется авторизация", "Для просмотра статистики нужно " + "авторизоваться. Перейти к авторизации?", false)
                 } else {
-                    if (Connection.hasConnection(context)) {
+                    if (Connection.hasConnection(this)) {
                         val action = SubjectSearchFragmentDirections.actionNavTeacher1ToNavTeacher2(subject)
                         getNavController().navigate(action)
                         viewModel.setTitle("${href_to_subj(subject)}.${viewModel.peek()}")
@@ -402,20 +425,20 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 if (session.sessionState == SessionState.anonymus) {
                     showAuthorizeMessage("Требуется авторизация", "Для просмотра статистики нужно " + "авторизоваться. Перейти к авторизации?", false)
                 } else {
-                    if (Connection.hasConnection(context)) {
+                    if (Connection.hasConnection(this)) {
                         val downloadStatistics = DownloadStatistics(this, subject, "session=" + session.session)
                         downloadStatistics.execute()
                     }
                 }
             }
             "Об экзамене" -> { // done
-                if (Connection.hasConnection(context)) {
+                if (Connection.hasConnection(this)) {
                     val downloadManual = DownloadAboutExam(this, subject, href_to_subj(subject)) ///
                     downloadManual.execute()
                 }
             }
             "О проекте" -> {//done
-                if (Connection.hasConnection(context)) {
+                if (Connection.hasConnection(this)) {
                     val downloadManual = DownloadAboutProject(this) ////
                     downloadManual.execute()
                 }
@@ -427,8 +450,8 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
     }
 
     fun href_to_subj(href: String): String {
-        val subjectsArray = context.resources.getStringArray(R.array.subjects)
-        val prefixArray = context.resources.getStringArray(R.array.subjects_prefix)
+        val subjectsArray = this.resources.getStringArray(R.array.subjects)
+        val prefixArray = this.resources.getStringArray(R.array.subjects_prefix)
         for (i in prefixArray.indices) {
             if (prefixArray[i] == href) {
                 return subjectsArray[i]
@@ -544,10 +567,10 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 //MyDB.removeUser(MyDB.getUser().login)
                 val sessionObject = Session("", SessionState.anonymus)
                 val settings = Settings()
-                settings.setSession(sessionObject, context)
-                settings.setLoginAndPassword("", "", context)
+                settings.setSession(sessionObject, this)
+                settings.setLoginAndPassword("", "", this)
             }
-            val intent = Intent(context, LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             if (Build.VERSION.SDK_INT > 20) {
                 val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
                 startActivity(intent, options.toBundle())
@@ -568,12 +591,12 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
 
     fun showUpdateMessage(title: String, message: String) {
 
-        val ad = AlertDialog.Builder(context)
+        val ad = AlertDialog.Builder(this)
         ad.setTitle(title)
         ad.setMessage(message)
 
         ad.setNegativeButton("Да") { dialog, arg1 ->
-            if (Connection.hasConnection(context)) {
+            if (Connection.hasConnection(this)) {
                 val update = Update(this, false)
                 update.doInBackground()
             }

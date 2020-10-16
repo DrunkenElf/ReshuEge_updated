@@ -4,16 +4,15 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.ilnur.DataBase.*
-import com.ilnur.backend.API
-import com.ilnur.backend.ApiRequests
-import com.ilnur.backend.ApiRequestsImp
-import com.ilnur.backend.Downloaders
+import com.ilnur.backend.*
 import com.ilnur.repository.LoginRepository
 import com.ilnur.repository.MainRepository
+import com.ilnur.service.DownloadForeground
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.components.ServiceComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -105,7 +104,8 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideMainRepository(@ApplicationContext context: Context, db: AppDatabase, downloaders: Downloaders) =
+    fun provideMainRepository(@ApplicationContext context: Context, db: AppDatabase,
+                              downloaders: Downloaders) =
             MainRepository(context, db, downloaders)
 
    /* @Singleton
@@ -117,14 +117,26 @@ object RepositoryModule {
     @Provides
     fun provideTopicsRepository(@ApplicationContext context: Context, categoryDao: CategoryDao) = TopicsRepository(context, categoryDao)*/
 }
+@InstallIn(ServiceComponent::class)
+@Module
+object ServiceModule{
+    @Singleton
+    @Provides
+    fun provideRepos(downloaders: Downloaders) = DownloadForeground
+}
 
 @InstallIn(ApplicationComponent::class)
 @Module
 object NetworkModule {
     @Singleton
     @Provides
-    fun provideDownloader(@ApplicationContext context: Context,apiRequests: ApiRequestsImp, db: AppDatabase) = Downloaders(context, apiRequests, db)
+    fun provideDownloader(
+        @ApplicationContext context: Context,
+        apiRequests: ApiRequestsImp,
+        db: AppDatabase
+    ) = Downloaders(context, apiRequests, db)
 
+}
 
    /* @Singleton
     @Provides
@@ -134,5 +146,5 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideTopicsRepository(@ApplicationContext context: Context, categoryDao: CategoryDao) = TopicsRepository(context, categoryDao)*/
-}
+
 

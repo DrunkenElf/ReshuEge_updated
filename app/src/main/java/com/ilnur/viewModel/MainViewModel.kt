@@ -1,5 +1,7 @@
 package com.ilnur.viewModel
 
+import android.content.SharedPreferences
+import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -58,9 +60,15 @@ class MainViewModel @ViewModelInject constructor(private val repository: MainRep
     }
 
     fun launchCheck(){
-        CoroutineScope(Dispatchers.IO).launch {
+        //CoroutineScope(Dispatchers.IO).launch {
             //repository.launchCheck()
-            repository.getSubject("mathb")
+        Log.d("launch check", "viewmoferl")
+         repository.getSubject("math")
+        //}
+    }
+    fun getAllSubjects(){
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.getAllSubjects()
         }
     }
 

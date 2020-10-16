@@ -32,7 +32,7 @@ class ApiRequestsImp @Inject constructor(val api: API, val db: AppDatabase) : Ap
     suspend fun getTask(href: String, data: Int): Response<ResponseTask> =
             api.getTask(get_task(href = href, data = data))
 
-     fun getImage(url: String, callback: Callback<ResponseBody>)= api.getImage(url).enqueue(callback)
+     fun getImage(url: String)= api.getImage(url).execute()
 
 }
 

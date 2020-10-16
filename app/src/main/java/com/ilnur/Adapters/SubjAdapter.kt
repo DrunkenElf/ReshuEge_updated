@@ -119,7 +119,7 @@ class SubjAdapter(private val context: Context, private val subjs: Array<String>
                 //questions.execute()
                 //val task = DownloadUrlTasks(context, prefix, ada, name)
                 //task.downloadTasks()
-                ForegroundService1.startService(context, prefix, name)
+                //ForegroundService1.startService(context, prefix, name)
                /* val intent = Intent(context, DownloadIntService::class.java)
                 intent.putExtra("prefix", prefix)
                 intent.putExtra("name", name)

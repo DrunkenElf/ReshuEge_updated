@@ -177,27 +177,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private val loginWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(login = p0.toString()))
         }
 
-        override fun afterTextChanged(p0: Editable?) {
-        }
+        override fun afterTextChanged(p0: Editable?) = Unit
 
     }
     private val passwordWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(password = p0.toString()))
         }
 
-        override fun afterTextChanged(p0: Editable?) {
-        }
+        override fun afterTextChanged(p0: Editable?) = Unit
 
     }
 

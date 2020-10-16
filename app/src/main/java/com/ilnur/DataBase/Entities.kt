@@ -75,3 +75,12 @@ data class User(
         @SerializedName("session_id") @ColumnInfo(name = "session_id") val session_id: String?,
         @SerializedName("logged") @ColumnInfo(name = "logged") var logged: Boolean = false
 )
+
+@Keep
+data class ShowProg(
+        var varDone: Int,
+        var varTotal: Int,
+        var taskDone: Int,
+        var taskTotal: Int,
+        var imgDone: Int
+)
