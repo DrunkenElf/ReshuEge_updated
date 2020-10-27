@@ -1,0 +1,32 @@
+
+b
+java:S1192U"GDefine a constant instead of duplicating this literal "values" 3 times.(õÖš«ûÿÿÿÿ
+]
+java:S1192T"GDefine a constant instead of duplicating this literal "keySet" 3 times.(®Ÿ€Ñ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÿµú
+S
+java:S1128"8Remove this unused import 'android.app.ActivityOptions'.(ş­¡½ùÿÿÿÿ
+V	java:S125%"<This block of commented-out lines of code should be removed.(à«»¿üÿÿÿÿ
+V
+java:S1854@";Remove this useless assignment to local variable "manager".(ß€úÿÿÿÿ
+m
+java:S37767"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¨ÿÊÊûÿÿÿÿ
+Q	java:S1252"<This block of commented-out lines of code should be removed.( Õü
+Q	java:S125<"<This block of commented-out lines of code should be removed.(É¼
+Q	java:S125A"<This block of commented-out lines of code should be removed.(ì…Ö®
+H
+java:S1135D"2Complete the task associated to this TODO comment.(…ïœ†
+<	java:S131N""Add a default case to this switch.(¼œóÛüÿÿÿÿ
+P	java:S125X"<This block of commented-out lines of code should be removed.(ÛıF
+K
+java:S2209w"5Change this instance-reference to a static reference.(’áºÔ
+K
+java:S2209x"5Change this instance-reference to a static reference.(éØÒ
+K
+java:S2209y"5Change this instance-reference to a static reference.(Ò§Ú–
+G
+java:S1481@",Remove this unused "manager" local variable.(ß€úÿÿÿÿ
+C
+java:S1068 "(Remove this unused "imgs" private field.(‡È×¸ûÿÿÿÿ
+L
+java:S1068&"1Remove this unused "savedInstance" private field.(Ë…éıÿÿÿÿ

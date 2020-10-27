@@ -1,19 +1,12 @@
 package com.ilnur
 
-import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
-import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.Group
 import androidx.transition.TransitionManager
 import androidx.transition.Visibility
 
-import android.os.Handler
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -26,36 +19,25 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.constraintlayout.helper.widget.Layer
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.lifecycleScope
 
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
-import com.ilnur.DataBase.MyDB
-
-import org.json.JSONException
-import org.json.JSONObject
-
-import java.io.ByteArrayOutputStream
-import java.io.IOException
-import java.io.InputStream
-import java.net.URL
-import java.text.SimpleDateFormat
-import java.util.Date
-
-import javax.net.ssl.HttpsURLConnection
 
 //import com.ilnur.DataBase.MyDB1
-import com.ilnur.DownloadTasks.Update
 import com.ilnur.Session.Session
 import com.ilnur.Session.SessionState
-import com.ilnur.Session.Settings
 import com.ilnur.utils.SettingsImp
+import com.ilnur.viewModel.LoginFormState
 import com.ilnur.viewModel.LoginState
 import com.ilnur.viewModel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -79,9 +61,9 @@ class LoginActivity : AppCompatActivity() {
     private var mPasswordView: EditText? = null
 
     //Placeholder holder;
-    internal lateinit var group_main: Group
-    internal lateinit var group_anim: Group
-
+    //internal lateinit var group_main: Group
+    //internal lateinit var group_anim: Group
+    internal lateinit var input_layer: Layer
     //private View mProgressView;
     //private View mLoginFormView;
     private fun setupAnim() {
@@ -106,23 +88,37 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+    fun setTrans(startState: Int, endState: Int, duration: Int = 500){
+        motion_layout.setTransition(startState, endState)
+        motion_layout.setTransitionDuration(duration)
+        motion_layout.transitionToEnd()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupAnim()
+        //setupAnim()
         setContentView(R.layout.activity_login)
+
+
+
+
+        //motion_layout.setTransition(R.id.init_gone_launch, R.id.normal_stege)
+       // motion_layout.transitionToEnd()
+        //val motionLay = findViewById<MotionLayout>(R.id.motion_layout)
+
+        //motion_layout.setTransition(motion_layout.currentState, )
         // Set up the login form.
 
         //viewModel.addMainSubjs()
 
         //context = this
 
-        Glide.with(this)
-                .load(R.drawable.ball)
-                .timeout(10)
+        //Glide.with(this)
+        //        .load(R.drawable.ball)
+        //        .timeout(10)
                 //.apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
-                .into(findViewById<View>(R.id.logo) as ImageView)
+         //       .into(findViewById<View>(R.id.logo) as ImageView)
         Glide.with(this)
                 .load(R.drawable.ball1)
                 .timeout(10)
@@ -135,16 +131,26 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResult.observe(this, {
             it?.let {
                 Log.d("loginRES OBS", it.toString())
+
                 when (it) {
                     LoginState.SUCCESS -> {
-                        lifecycleScope.launch { settings.setLogged(true) }
-                        startActivity(Intent(this, MainMenu::class.java))
+                        setTrans(R.id.login_attempt_end, R.id.login_attempt_start)
+                        lifecycleScope.launch(Dispatchers.Main) {
+                            settings.setLogged(true)
+                            setTrans(R.id.start, R.id.end, 1000)
+                            delay(1250)
+                            startActivity(Intent(this@LoginActivity, MainMenu::class.java))
+                        }
                     }
                     LoginState.ERROR -> {
+
                     }
                     LoginState.NO_INTERNET -> {
                     }
                     LoginState.WRONG_LOG_OR_PAS -> {
+                    }
+                    LoginState.DEFAULT -> { //used to skip sign in
+                        setTrans(R.id.login_attempt_end, R.id.login_attempt_start)
                     }
                     else -> Log.d("Nothing has happened", "уляля")
                 }
@@ -155,6 +161,8 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginFormState.observe(this, {
             it?.let {
                 Log.d("loginFORM OBS", it.toString())
+                //viewModel.upd
+                //mEmailView.setText(it.login)
             }
         })
         /* mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -180,7 +188,9 @@ class LoginActivity : AppCompatActivity() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(login = p0.toString()))
+            //viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(login = p0.toString()))
+            viewModel.updateLoginState(
+                (viewModel.loginFormState.value ?: LoginFormState()).copy(login = p0.toString()))
         }
 
         override fun afterTextChanged(p0: Editable?) = Unit
@@ -190,7 +200,8 @@ class LoginActivity : AppCompatActivity() {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(password = p0.toString()))
+            viewModel.updateLoginState(
+                (viewModel.loginFormState.value ?: LoginFormState()).copy(password = p0.toString()))
         }
 
         override fun afterTextChanged(p0: Editable?) = Unit
@@ -198,8 +209,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun setupViews() {
-        group_main = findViewById(R.id.group_main)
-        group_anim = findViewById(R.id.group_anim)
+        //group_main = findViewById(R.id.group_main)
+        //group_anim = findViewById(R.id.group_anim)
+        input_layer = findViewById(R.id.layer_input)
+
         mEmailView = findViewById<View>(R.id.email) as AutoCompleteTextView
 
         mEmailView.addTextChangedListener(loginWatcher)
@@ -211,9 +224,23 @@ class LoginActivity : AppCompatActivity() {
 
         mPasswordView!!.addTextChangedListener(passwordWatcher)
 
-        mEmailView.setText(viewModel.loginFormState.value!!.login)
+        mEmailView.setText((viewModel.loginFormState.value ?: LoginFormState()).login)
 
-        mPasswordView!!.setText(viewModel.loginFormState.value!!.password)
+        mPasswordView?.setText((viewModel.loginFormState.value ?: LoginFormState()).password)
+
+        mEmailView.setOnEditorActionListener { _, id, _ ->
+            if (id == EditorInfo.IME_ACTION_DONE) {
+                mEmailSignInButton.performClick()
+                true
+            }
+            false
+        }
+
+
+        mEmailView.setOnKeyListener { v, id, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && id == KeyEvent.KEYCODE_ENTER) true
+            false
+        }
 
         mPasswordView!!.setOnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE) {
@@ -226,23 +253,26 @@ class LoginActivity : AppCompatActivity() {
             when (it.checking) {
                 true -> if (mEmailSignInButton.isEnabled) {
                     mEmailSignInButton.isEnabled = false
+                    Log.d("login clicked", "isEnabled = " +
+                            "${mEmailSignInButton.isEnabled}")
                 }
                 false -> {
                     if (!mEmailSignInButton.isEnabled)
                         mEmailSignInButton.isEnabled = true
+                    Log.d("login clicked", "isEnabled = " +
+                            "${mEmailSignInButton.isEnabled}")
                 }
             }
         })
         //mEmailSignInButton.
         mEmailSignInButton.setOnClickListener { view ->
+            //setTrans(motion_layout.currentState, R.id.init_gone_launch)
             val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken,
                     InputMethodManager.HIDE_NOT_ALWAYS)
-
+            Log.d("emailSignBtn", "formData: ${viewModel.loginFormState.value.toString()}")
             ///mEmailSignInButton.isClickable = false //turned off button
-            viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(checking = true))
 
-            viewModel.login(viewModel.loginFormState.value!!.login, viewModel.loginFormState.value!!.password)
             attemptLogin()
         }
 
@@ -257,13 +287,17 @@ class LoginActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+            lifecycleScope.launch(Dispatchers.Main){
+                setTrans(R.id.start, R.id.end, 1000)
+                delay(1200)
+                val intent = Intent(this@LoginActivity, MainMenu::class.java)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@LoginActivity)
+                startActivity(intent, options.toBundle())
+            }
 
-            val intent = Intent(this, MainMenu::class.java)
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
-            startActivity(intent, options.toBundle())
 
             //this.finishAfterTransition()
             //Update(context,true).doInBackground()
@@ -275,6 +309,9 @@ class LoginActivity : AppCompatActivity() {
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
             startActivity(intent, options.toBundle())*/
         }
+
+        //setTrans(motion_layout.currentState, R.id.init_gone_launch)
+        //setTrans(R.id.init_gone_launch, R.id.normal_stege)
     }
 
 
@@ -285,7 +322,7 @@ class LoginActivity : AppCompatActivity() {
      */
     private fun attemptLogin() {
 
-
+        //setTrans(R.id.login_attempt_start, R.id.login_attempt_end)
         val logg = findViewById<TextInputLayout>(R.id.input_email)
         val pass = findViewById<TextInputLayout>(R.id.input_password)
 
@@ -296,7 +333,7 @@ class LoginActivity : AppCompatActivity() {
         pass.error = null
 
         // Store values at the time of the login attempt.
-        val email = mEmailView!!.text.toString()
+        val email = mEmailView.text.toString()
         val password = mPasswordView!!.text.toString()
 
         var cancel = false
@@ -334,6 +371,10 @@ class LoginActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+            setTrans(R.id.login_attempt_start, R.id.login_attempt_end)
+            viewModel.updateLoginState(viewModel.loginFormState.value!!.copy(checking = true))
+
+            viewModel.login(viewModel.loginFormState.value!!.login, viewModel.loginFormState.value!!.password)
 
             //logg.setVisibility(View.GONE);
             //pass.setVisibility(View.GONE);
@@ -374,10 +415,10 @@ class LoginActivity : AppCompatActivity() {
             //TransitionManager.beginDelayedTransition(view, slideIn);
             slideIn.mode = Visibility.MODE_OUT
             slideIn.slideEdge = Gravity.LEFT
-            group_main.visibility = View.INVISIBLE
+            //group_main.visibility = View.INVISIBLE
             //TransitionManager.beginDelayedTransition(view);
             TransitionManager.beginDelayedTransition(view, slideIn)
-            group_anim.visibility = View.VISIBLE
+            //group_anim.visibility = View.VISIBLE
             //group_main.requestLayout();
             //ImageView gif = findViewById(R.id.packman);
             //gif.setVisibility(View.VISIBLE);
@@ -392,12 +433,17 @@ class LoginActivity : AppCompatActivity() {
             slideIn.mode = Visibility.MODE_IN
             slideIn.slideEdge = Gravity.RIGHT
             //TransitionManager.beginDelayedTransition(view);
-            group_anim.visibility = View.GONE
+            //group_anim.visibility = View.GONE
             TransitionManager.beginDelayedTransition(view, slideIn)
-            group_main.visibility = View.VISIBLE
+            //group_main.visibility = View.VISIBLE
 
             //group_main.requestLayout();
             //group_anim.requestLayout();
+        }
+
+
+        fun start_anim(){
+            input_layer.translationY
         }
         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
@@ -575,6 +621,7 @@ class LoginActivity : AppCompatActivity() {
             ad.show()
         }
     }
+
 */
     companion object {
 

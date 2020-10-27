@@ -1,6 +1,7 @@
+/*
 package com.ilnur.DownloadTasks
 
-import com.android.volley.RequestQueue.RequestFinishedListener
+//import com.android.volley.RequestQueue.RequestFinishedListener
 
 import android.app.*
 import android.content.ContentValues
@@ -186,7 +187,8 @@ class ForegroundService1 : Service() {
             Log.d("errorLis", ""+ it.message +" "+it.cause.toString())
         })
         queue.add(getTestID)
-        /*try {
+        */
+/*try {
             val id = JSONObject(testID)
             testID = id.getString("data")
             val file = if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
@@ -222,7 +224,9 @@ class ForegroundService1 : Service() {
 
         notificationManager.notify(33, notificationBuilder.build())
 
-        *//*val vals = Observable.range(1, 15) as Observable<Int>
+        *//*
+*/
+/*val vals = Observable.range(1, 15) as Observable<Int>
         vals.subscribeOn(Schedulers.io())
                 .map { i -> LoadVar(db, i-1).loadVar(testID!!, countPref, db, QUESTIONS_COUNT,  queue) }
                 .subscribe(
@@ -230,6 +234,8 @@ class ForegroundService1 : Service() {
                         { error -> Log.d("ERROR", error.message) },
                         { onLoadFinish(intent) }
                 )*//*
+*/
+/*
 
 
         val vals = Observable.range(1, 15) as Observable<Int>
@@ -246,7 +252,8 @@ class ForegroundService1 : Service() {
                         { }
                 )
 
-        Log.d("LAST", "LINE EXEc")*/
+        Log.d("LAST", "LINE EXEc")*//*
+
 
         return START_STICKY
     }
@@ -274,19 +281,23 @@ class ForegroundService1 : Service() {
             //notificationBuilder.setProgress(0, 0, true)
             notificationManager.notify(33, notificationBuilder.build())
             //progress.setMessage(var_counter.toString() + progressMsg[0] + img_counter.toString() + progressMsg[1])
-            /*if (values.size != 4) {
+            */
+/*if (values.size != 4) {
                 progress.setMessage(values[0].toString() + " из 15 Вариантов загружены")
 
             } else {
                 if (!download_pictures) {
                     progress.setMessage(values[0].toString() + " из 15 Вариантов загружены\n" + values[3] + " Фотографий загружено")
                 }
-            }*/
+            }*//*
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        /*}
-        handler.postDelayed(r, 10)*/
+        */
+/*}
+        handler.postDelayed(r, 10)*//*
+
     }
 
     fun onLoadFinish(intent: Intent) {
@@ -339,9 +350,11 @@ class ForegroundService1 : Service() {
             //showMessage("Сервер РЕШУ ЕГЭ временно недоступен.", context.getString(R.string.error))
 
         }
-        /*notificationBuilder
+        */
+/*notificationBuilder
                 .setProgress(0,0, false)
-                .setContentText("Загрузка завершена");*/
+                .setContentText("Загрузка завершена");*//*
+
         //notificationManager.cancel(33)
         //notificationManager.notify(33, notificationBuilder.build())
         notificationBuilder = NotificationCompat.Builder(this.applicationContext, "77").apply {
@@ -702,3 +715,4 @@ class ForegroundService1 : Service() {
     }
 
 }
+*/

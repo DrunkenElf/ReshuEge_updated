@@ -13,13 +13,158 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import com.ilnur.Connection
 import com.ilnur.DataBase.QuestionsDataBaseHelper
-import com.ilnur.DownloadTasks.ForegroundService
-import com.ilnur.DownloadTasks.ForegroundService1
+import com.ilnur.DataBase.Subject
+import com.ilnur.DataBase.SubjectMain
+//import com.ilnur.DownloadTasks.ForegroundService
+//import com.ilnur.DownloadTasks.ForegroundService1
 import com.ilnur.Fragments.SubjectsFragment
 import com.ilnur.R
+import com.ilnur.service.DownloadForeground
+import com.ilnur.viewModel.MainViewModel
 
+
+class SubjRecAdapter(val context: Context, val sharedModel: MainViewModel,
+                     val itemSelectedListener: ItemSelectedListener
+) :
+    RecyclerView.Adapter<SubjRecAdapter.SubjViewHolder>() {
+
+    class BroadIntReceiver(val adapter: SubjRecAdapter): BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val res = intent!!.getBooleanExtra("broadcastMessage", false)
+            Log.d("BROAD", res.toString())
+            adapter.sharedModel.updateSubjects()
+            //adapter.notifyDataSetChanged()
+            Log.d("BROAD", adapter.sharedModel.curr_download.value.toString())
+            adapter.notifyItemChanged(adapter.sharedModel.curr_download.value!!.position)
+
+        }
+    }
+
+    fun updateSubjs(){
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjViewHolder {
+        return SubjViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_subjects_item, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: SubjViewHolder, position: Int) {
+        holder.bindItems(sharedModel.subjects.value!![position])
+
+
+
+    }
+
+    override fun getItemCount(): Int {
+        return sharedModel.subjects.value!!.size
+    }
+
+    inner class SubjViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val img_dwn: ImageView = itemView.findViewById(R.id.download_icon_subj)
+        val title: TextView = itemView.findViewById(R.id.title_subj)
+        val img_retry: ImageView = itemView.findViewById(R.id.redownload_icon_subj)
+
+        init {
+            itemView.setOnClickListener{
+                when(sharedModel.subjects.value!![adapterPosition].isAdded){
+                    true -> {
+                        img_dwn.setImageResource(context.resources.getIdentifier("ico_${sharedModel.subjects.value!![adapterPosition].href}", "drawable", context.packageName))
+                        when(sharedModel.subjects.value!![adapterPosition].isNeedToUpd){
+                            true -> {
+                                //show msg with reccomendation to update
+                                img_retry.visibility = View.VISIBLE
+                            }
+                            else -> {
+                                // everythings fine
+                                img_retry.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+                    else -> {
+                        //subj not added
+                        img_dwn.setImageResource(R.drawable.ico_download)
+                        showMessage("Отсутствуют задания", "Требуется загрузить задания. Начать загрузку?",
+                            sharedModel.subjects.value!![adapterPosition].href, sharedModel.subjects.value!![adapterPosition].title,
+                            adapterPosition)
+                    }
+                }
+                itemSelectedListener.onItemSelected(sharedModel.subjects.value!![adapterPosition])
+            }
+        }
+        fun bindItems(item: SubjectMain){
+            title.text = item.title
+            //image will be later
+            when(sharedModel.subjects.value!![adapterPosition].isAdded){
+                true -> {
+                    img_dwn.setImageResource(context.resources.getIdentifier("ico_${sharedModel.subjects.value!![adapterPosition].href}", "drawable", context.packageName))
+                    if (sharedModel.subjects.value!![adapterPosition].isNeedToUpd)
+                        img_retry.visibility = View.VISIBLE
+                    else
+                        img_retry.visibility = View.INVISIBLE
+                }
+                else -> {
+                    img_dwn.setImageResource(R.drawable.ico_download)
+                }
+            }
+        }
+
+    }
+
+    interface ItemSelectedListener {
+        fun onItemSelected(item: SubjectMain)
+    }
+
+
+
+    fun showMessage(title: String, message: String, prefix: String, name: String, position: Int) {
+        val ad = AlertDialog.Builder(context)
+        ad.setTitle(title)
+        ad.setMessage(message)
+
+        ad.setNegativeButton("Да") { dialog, arg1 ->
+            if (Connection.hasConnection(context)) {
+                sharedModel.updateCurrDwn(DwnCurr(title = name, href = prefix, position = position))
+                val intent = Intent(context, DownloadForeground::class.java)
+                intent.putExtra("prefix", prefix)
+                intent.putExtra("name", name)
+                intent.putExtra("position", position)
+                context.startService(intent)
+                //val questions = ParserUrlTasks(context, prefix, ada)
+                //questions.execute()
+                //val task = DownloadUrlTasks(context, prefix, ada, name)
+                //task.downloadTasks()
+                //ForegroundService1.startService(context, prefix, name)
+                /* val intent = Intent(context, DownloadIntService::class.java)
+                 intent.putExtra("prefix", prefix)
+                 intent.putExtra("name", name)
+                 context.startService(intent)*/
+            }
+        }
+
+        ad.setPositiveButton("Нет") { dialog, arg1 -> notifyDataSetChanged() }
+
+        ad.setCancelable(true)
+        ad.setOnCancelListener { notifyDataSetChanged() }
+
+        ad.show()
+
+    }
+
+}
+
+
+
+
+
+data class DwnCurr(
+    val isLoading: Boolean = false,
+    val title: String,
+    val href: String,
+    val position: Int,
+)
 
 class SubjAdapter(private val context: Context, private val subjs: Array<String>, private val mListener: SubjectsFragment.OnFragmentInteractionListener) : BaseAdapter() {
     internal var subjects: Array<String>
@@ -100,7 +245,7 @@ class SubjAdapter(private val context: Context, private val subjs: Array<String>
         return item
     }
 
-    class BroadIntReceiver(val adapter: SubjAdapter): BroadcastReceiver(){
+    class BroadIntReceiver(val adapter: SubjRecAdapter): BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
             val res = intent!!.getBooleanExtra("broadcastMessage", false)
             Log.d("BROAD", res.toString())
@@ -115,6 +260,10 @@ class SubjAdapter(private val context: Context, private val subjs: Array<String>
 
         ad.setNegativeButton("Да") { dialog, arg1 ->
             if (Connection.hasConnection(context)) {
+                val intent = Intent(context, DownloadForeground::class.java)
+                intent.putExtra("prefix", prefix)
+                intent.putExtra("name", name)
+                context.startService(intent)
                 //val questions = ParserUrlTasks(context, prefix, ada)
                 //questions.execute()
                 //val task = DownloadUrlTasks(context, prefix, ada, name)

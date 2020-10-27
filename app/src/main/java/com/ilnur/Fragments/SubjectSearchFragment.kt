@@ -33,7 +33,7 @@ class SubjectSearchFragment : Fragment() {
 
         val lw = root.findViewById<ListView>(R.id.subjs_list)
 
-        val adapter = SubjectSearchArrayAdapter(activity!!,
+        val adapter = SubjectSearchArrayAdapter(requireActivity(),
                 subject, mListener!!, subject_prefix)
         lw.adapter = adapter
         return root
@@ -42,11 +42,11 @@ class SubjectSearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (Build.VERSION.SDK_INT >= 23) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity!!, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                val builder = androidx.appcompat.app.AlertDialog.Builder(activity!!)
+            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                val builder = androidx.appcompat.app.AlertDialog.Builder(requireActivity())
                 builder.setMessage("Для корректного отображения скачанных изображений требуется дать доступ к сохранению файлов.")
                         .setPositiveButton("Продолжить") { dialog, which ->
-                            ActivityCompat.requestPermissions(activity!!,
+                            ActivityCompat.requestPermissions(requireActivity(),
                                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
                                     1)
                         }

@@ -65,6 +65,9 @@ interface SubjectMainDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(subject: SubjectMain)
 
+    @Update
+    fun update(subject: SubjectMain)
+
     @Delete
     fun delete(subject: SubjectMain)
 }

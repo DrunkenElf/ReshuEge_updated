@@ -1,0 +1,45 @@
+
+`
+java:S2095Û"IUse try-with-resources or close this "InputStream" in a "finally" clause.(áá¨İ
+j
+java:S2095ç"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Âë–áûÿÿÿÿ
+h
+java:S1192z"RDefine a constant instead of duplicating this literal "SELECT data FROM " 4 times.(©ã„˜
+^
+java:S1192®"GDefine a constant instead of duplicating this literal "id = ?" 3 times.(×ÔÊÀ
+d
+java:S1192z"NDefine a constant instead of duplicating this literal " WHERE id = ?" 4 times.(©ã„˜
+L
+java:S1153M"1Directly append the argument of String.valueOf().(²œí¦ıÿÿÿÿ
+k	java:S1174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÅöıÿÿÿÿ
+f	java:S117c"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨¶Ë”
+e	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ÜŞ2
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(…±Øú
+a
+java:S2259õ"JA "NullPointerException" could be thrown; "outputStream" is nullable here.(‚çÿş
+f
+java:S2259ï"JA "NullPointerException" could be thrown; "outputStream" is nullable here.(Ä³€¿ùÿÿÿÿ
+_
+java:S2259î"IA "NullPointerException" could be thrown; "inputStream" is nullable here.(«¬®k
+—
+java:S1186˜"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ã€¡u
+@
+java:S3010)"%Remove this assignment of "acontext".(áŞûÿÿÿÿ
+Q	java:S125#"<This block of commented-out lines of code should be removed.(©ÇÙ–
+A
+java:S1075:"&Remove this hard-coded path-delimiter.(¼äÀôÿÿÿÿÿ
+^
+java:S1874:"CRemove this use of "getExternalStorageDirectory"; it is deprecated.(¼äÀôÿÿÿÿÿ
+W
+java:S1075="ARefactor your code to get this URI from a customizable parameter.(ÏüÆõ
+B
+java:S3011A",This accessibility update should be removed.(˜ÂÓ˜
+B
+java:S3011B",This accessibility bypass should be removed.(¶Ëü
+Q	java:S125T"<This block of commented-out lines of code should be removed.(ñü‹Ô
+Q	java:S125w"<This block of commented-out lines of code should be removed.(†’Œ¥
+W	java:S125·"<This block of commented-out lines of code should be removed.(­­Óşÿÿÿÿ
+R	java:S125¼"<This block of commented-out lines of code should be removed.(¦ñÙÊ
+W	java:S125Ì"<This block of commented-out lines of code should be removed.(û™ÕËüÿÿÿÿ
+?	java:S108ƒ")Either remove or fill this block of code.(–ãÉ˜
+W	java:S125‰"<This block of commented-out lines of code should be removed.(éñÄˆıÿÿÿÿ

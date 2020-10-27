@@ -5,6 +5,12 @@
     android:transitionGroup="true"
     android:background="@color/transWhite">
 
+
+  <!--  <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_subj"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>-->
+
     <!--#8F8F8F-->
     <ListView
         android:layout_width="match_parent"

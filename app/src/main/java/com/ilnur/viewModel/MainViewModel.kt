@@ -1,6 +1,5 @@
 package com.ilnur.viewModel
 
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
@@ -8,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.ilnur.Adapters.DwnCurr
 import com.ilnur.DataBase.SubjectMain
 import com.ilnur.DataBase.User
 import com.ilnur.repository.MainRepository
@@ -24,30 +24,81 @@ enum class NavItemType {
 }
 
 data class NavItem(
-        val name: String,
-        val type: NavItemType
+    val name: String,
+    val type: NavItemType
 )
 
-class MainViewModel @ViewModelInject constructor(private val repository: MainRepository,
-                                                 @Assisted private val state: SavedStateHandle) : ViewModel() {
+class MainViewModel @ViewModelInject constructor(
+    private val repository: MainRepository,
+    @Assisted private val state: SavedStateHandle
+) : ViewModel() {
 
-    val _itemSelected = MutableLiveData<Stack<String>>()
+    private val _itemSelected = MutableLiveData<Stack<String>>()
+
     val itemSelected: LiveData<Stack<String>> get() = _itemSelected
+
+    init {
+        _itemSelected.postValue(getItemSelectedStack())
+        _itemSelected.observeForever {
+            Log.d("MAIN", "stack observeForever")
+            updateStackState()
+        }
+
+    }
+
+    private fun updateStackState(){
+        if (!_itemSelected.value.isNullOrEmpty())
+            state.set("stack", _stackToString())
+    }
+
+    private fun getItemSelectedStack(): Stack<String>{
+        val temp = (state.get<String>("stack") ?: "РЕШУ ЕГЭ").split(", ")
+        Log.d("MAIN viewModel", "stack from state $temp")
+        val stack = Stack<String>()
+        temp.forEach { stack.push(it.trim { (it == '[' || it == ']') }) }
+        Log.d("MAIN", "stack asd")
+        return stack
+    }
+
+   /* private fun pushItemSelected(item: String) {
+        val strBuilder = "${item}${_stackToString()}"
+        state.set("stack", strBuilder)
+    }*/
+
+    private fun _stackToString(): String{
+        val str = _itemSelected.value.toString()
+        Log.d("MAIN","stackToString $str")
+        return str
+    }
 
 
     val _title = MutableLiveData<String>()
     val title: LiveData<String> get() = _title
 
+    val _curr_download = MutableLiveData<DwnCurr>()
+    val curr_download: LiveData<DwnCurr> get() = _curr_download
+
+    fun updateCurrDwn(curr: DwnCurr) {
+        _curr_download.postValue(curr)
+    }
+
     //fun pushItem(item: NavItem, any: Any)
-    fun push(item: String) = _itemSelected.value?.push(item)
+    fun push(item: String) {
+        Log.d("MAIN viewModel", "push; prevVal ${_itemSelected.value?.peek()}")
+        _itemSelected.value?.push(item)
+    }
 
     fun peek() = itemSelected.value?.peek()
 
-    fun pop() = _itemSelected.value?.pop()
+    fun pop() : String{
+        Log.d("MAIN", "pop ${_itemSelected.value?.peek()}")
+        return _itemSelected.value?.pop().toString()
+    }
 
     fun setTitle(title: String) {
         _title.value = title
     }
+
     fun getTitle() = title.value
 
     val _subjects = MutableLiveData<List<SubjectMain>>()
@@ -59,14 +110,19 @@ class MainViewModel @ViewModelInject constructor(private val repository: MainRep
         CoroutineScope(Dispatchers.IO).launch { _subjects.postValue(repository.getSubjects()) }
     }
 
-    fun launchCheck(){
-        //CoroutineScope(Dispatchers.IO).launch {
-            //repository.launchCheck()
+    fun updateSubjects() =
+        CoroutineScope(Dispatchers.IO).launch { _subjects.postValue(repository.getSubjects()) }
+
+    /*fun launchCheck(){
         Log.d("launch check", "viewmoferl")
-         repository.getSubject("math")
-        //}
+         repository.getSubject()
+    }*/
+
+    fun dwnSubject(name: String, href: String) {
+        repository.getSubject(href, name)
     }
-    fun getAllSubjects(){
+
+    fun getAllSubjects() {
         CoroutineScope(Dispatchers.IO).launch {
             repository.getAllSubjects()
         }

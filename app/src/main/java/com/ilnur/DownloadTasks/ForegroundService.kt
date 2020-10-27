@@ -1,3 +1,4 @@
+/*
 package com.ilnur.DownloadTasks
 
 import android.app.*
@@ -19,13 +20,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.BasicNetwork
-import com.android.volley.toolbox.DiskBasedCache
-import com.android.volley.toolbox.HurlStack
-import com.android.volley.toolbox.JsonObjectRequest
+
 import com.ilnur.DataBase.QuestionsDataBaseHelper
 import com.ilnur.Protocol
 import com.ilnur.R
@@ -161,7 +156,8 @@ class ForegroundService : Service() {
                         { error -> Log.d("ERROR", error.message.toString()) },
                         { onLoadFinish(intent) }
                 )
-        /*val vals = Observable.range(1, 15) as Observable<Int>
+        */
+/*val vals = Observable.range(1, 15) as Observable<Int>
         val disposable = vals.flatMap { mapper ->
             Observable.just(mapper).retry(2).subscribeOn(Schedulers.io())
                     .map { i -> loadVar(testID!!, countPref, db, QUESTIONS_COUNT, i - 1) }
@@ -173,13 +169,16 @@ class ForegroundService : Service() {
                         { result -> print(result.index) },
                         { error -> Log.d("ERROR", error.message) },
                         { onLoadFinish(intent) }
-                )*/
+                )*//*
 
-        /*Observable.just()
+
+        */
+/*Observable.just()
         for (i in 1 until 15){
             loadVar(testID!!, countPref, db, QUESTIONS_COUNT, i - 1)
         }
-        onLoadFinish(intent)*/
+        onLoadFinish(intent)*//*
+
         //db.close()
 
         return START_STICKY
@@ -196,19 +195,23 @@ class ForegroundService : Service() {
             //notificationBuilder.setProgress(0, 0, true)
             notificationManager.notify(33, notificationBuilder.build())
             //progress.setMessage(var_counter.toString() + progressMsg[0] + img_counter.toString() + progressMsg[1])
-            /*if (values.size != 4) {
+            */
+/*if (values.size != 4) {
                 progress.setMessage(values[0].toString() + " из 15 Вариантов загружены")
 
             } else {
                 if (!download_pictures) {
                     progress.setMessage(values[0].toString() + " из 15 Вариантов загружены\n" + values[3] + " Фотографий загружено")
                 }
-            }*/
+            }*//*
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        /*}
-        handler.postDelayed(r, 10)*/
+        */
+/*}
+        handler.postDelayed(r, 10)*//*
+
     }
 
     fun onLoadFinish(intent: Intent) {
@@ -261,9 +264,11 @@ class ForegroundService : Service() {
             //showMessage("Сервер РЕШУ ЕГЭ временно недоступен.", context.getString(R.string.error))
 
         }
-        /*notificationBuilder
+        */
+/*notificationBuilder
                 .setProgress(0,0, false)
-                .setContentText("Загрузка завершена");*/
+                .setContentText("Загрузка завершена");*//*
+
         //notificationManager.cancel(33)
         //notificationManager.notify(33, notificationBuilder.build())
         notificationBuilder = NotificationCompat.Builder(this.applicationContext, "77").apply {
@@ -321,7 +326,8 @@ class ForegroundService : Service() {
         qCount = questionNumbers.length()
         if (i == 0)
             addThemes(qCount, db)
-        /*val disposable = loadTask(questionNumbers.getString(0),0).subscribeOn(Schedulers.io())
+        */
+/*val disposable = loadTask(questionNumbers.getString(0),0).subscribeOn(Schedulers.io())
         for (j in 1 until questionNumbers.length()){
             disposable.mergeWith(loadTask(questionNumbers.getString(j), j).subscribeOn(Schedulers.io()))
         }
@@ -334,8 +340,10 @@ class ForegroundService : Service() {
                             addToDataBase1(arrayToList(varArray), db, i)
                             //return@blockingSubscribe
                             //return@loadVar IndValue(i, arrayToList(varArray))
-                        })*/
-        /*.subscribe(
+                        })*//*
+
+        */
+/*.subscribe(
                 { res -> varArray[res.index] = res.task},
                 {},
                 {
@@ -344,7 +352,8 @@ class ForegroundService : Service() {
                     addToDataBase1(variantArray, db, i)
                     return@loadVar IndValue(i, arrayToList(varArray))
                 }
-        )*/
+        )*//*
+
 
         for (j in 0 until questionNumbers.length()) {
             val taskString = loadAPI("get_task&data=", Integer.parseInt(questionNumbers.getString(j)))
@@ -478,7 +487,8 @@ class ForegroundService : Service() {
             error -> error.printStackTrace()
         })
         queue.add(request)
-       /* try {
+       */
+/* try {
             val themes = loadAPI("get_themes", 0)
             val themesJSON = JSONObject(themes)
             val array = themesJSON.getJSONArray("data")
@@ -489,7 +499,8 @@ class ForegroundService : Service() {
             }
             addThemesToDataBase(themesArray, db)
         } catch (e: Exception) {
-        }*/
+        }*//*
+
     }
 
     private fun addThemesToDataBase(themes: ArrayList<String>, db: SQLiteDatabase) {
@@ -625,4 +636,4 @@ class ForegroundService : Service() {
     }
 
 
-}
+}*/

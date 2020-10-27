@@ -20,6 +20,7 @@ import com.ilnur.Session.Session
 import com.ilnur.Session.SessionState
 import com.ilnur.Session.Settings
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -30,6 +31,7 @@ import java.net.URL
 import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 import kotlin.coroutines.CoroutineContext
+import kotlin.time.Duration
 
 @AndroidEntryPoint
  class SplashActivity : AppCompatActivity() {
@@ -46,15 +48,18 @@ import kotlin.coroutines.CoroutineContext
 
         }
         user.observe(this) {
-            val tmp = it
-            if (tmp == null) {
-                startLoginAct()
-            } else if (tmp.session_id != null && tmp.password != null && tmp.logged) {
-                Log.d("Used data exist", tmp.toString())
-                //start main
-                startMainActivity(tmp)
-            } else
-                startLoginAct()
+            lifecycleScope.launch(Dispatchers.Main) {
+                delay(1900)
+                val tmp = it
+                if (tmp == null) {
+                    startLoginAct()
+                } else if (tmp.session_id != null && tmp.password != null && tmp.logged) {
+                    Log.d("Used data exist", tmp.toString())
+                    //start main
+                    startMainActivity(tmp)
+                } else
+                    startLoginAct()
+            }
         }
     }
 
@@ -62,23 +67,32 @@ import kotlin.coroutines.CoroutineContext
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        //motion_splash.setTransition(R.id.transition_splash)
+        //motion_splash.transitionToEnd()
 
-        isLogged()
+        lifecycleScope.launch(Dispatchers.Main){ isLogged() }
     }
+
+    override fun onResume() {
+        lifecycleScope.launch(Dispatchers.Main){ isLogged() }
+        super.onResume()
+    }
+
 
 
     private fun startMainActivity(user: User){
         Log.d("startMain", user.toString())
         val startupIntent = Intent(this, MainMenu::class.java)
         startActivity(startupIntent)
-        this.finish()
+        //this.finish()
     }
 
     private fun startLoginAct() {
         Log.d("startLogin", "no user")
         val startupIntent = Intent(this, LoginActivity::class.java)
         startActivity(startupIntent)
-        this.finish()
+        //this.finish()
+        //finishAfterTransition()
     }
 
     private val _user = MutableLiveData<User?>()

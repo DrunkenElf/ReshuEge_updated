@@ -1,18 +1,30 @@
 
-5kotlin:S125K"Remove this commented out code.(ı¹
-Kkotlin:S1135Ü"2Complete the task associated to this TODO comment.(¼í 
-7kotlin:S125Ò"Remove this commented out code.(³çªº
-<kotlin:S125Œ"Remove this commented out code.(šÅ¤üÿÿÿÿ
-<kotlin:S125Ö"Remove this commented out code.(†ñ¥—ùÿÿÿÿ
-Akotlin:S108“")Either remove or fill this block of code.(‰ú‘¾
-Akotlin:S108‘")Either remove or fill this block of code.(è£öÑ
-Pkotlin:S1481ú"2Remove this unused "sessionObject" local variable.(¬ë·‹ùÿÿÿÿ
-7kotlin:S125’"Remove this commented out code.(ıäø
-Kkotlin:S1135º"2Complete the task associated to this TODO comment.(Ö¾ã¯
-Fkotlin:S108")Either remove or fill this block of code.(’«—çûÿÿÿÿ
-7kotlin:S125ï"Remove this commented out code.(™±Ãš
-Pkotlin:S1135Ì"2Complete the task associated to this TODO comment.(ÉÓÈìıÿÿÿÿ
-Fkotlin:S108…")Either remove or fill this block of code.(ıíæşÿÿÿÿ
-7kotlin:S125†"Remove this commented out code.(åìŒÆ
-7kotlin:S125"Remove this commented out code.(¶öÃ¹
-ekotlin:S117ä"MRename this parameter to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(«¨—©
+rkotlin:S3776Ó"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(­ŠàÉ8ÄõûıÓ.
+>kotlin:S125¤"Remove this commented out code.(…à—8ÄõûıÓ.
+Bkotlin:S125d"Remove this commented out code.(÷‡Èşÿÿÿÿ8‚”§ŠÔ.
+Wkotlin:S1135û"2Complete the task associated to this TODO comment.(ÉÓÈìıÿÿÿÿ8ÄõûıÓ.
+Mkotlin:S108®")Either remove or fill this block of code.(ıíæşÿÿÿÿ8ÄõûıÓ.
+Akotlin:S108”")Either remove or fill this block of code.(è£öÑ
+lkotlin:S117"MRename this parameter to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(«¨—©8ÄõûıÓ.
+okotlin:S100½"PRename function "start_anim" to match the regular expression ^[a-z][a-zA-Z0-9]*$(óÑÌı8Â÷şÓ.
+Rkotlin:S1135…"2Complete the task associated to this TODO comment.(¼í 8ÄõûıÓ.
+=kotlin:S125j"Remove this commented out code.(ê²˜Š8÷ŒŠ‹Ô.
+>kotlin:S125´"Remove this commented out code.(ıäø8ÄõûıÓ.
+>kotlin:S125³"Remove this commented out code.(èˆ‘î8ÙßÿÓ.
+Lkotlin:S1125ñ"'Remove the unnecessary Boolean literal.(„ìÕıÿÿÿÿ8ÄõûıÓ.
+<kotlin:S125®"Remove this commented out code.(šÅ¤üÿÿÿÿ
+Ckotlin:S125¹"Remove this commented out code.(ò¿î¢üÿÿÿÿ8í‰ã‹Ô.
+>kotlin:S125Å"Remove this commented out code.(Íÿç‰8ÍŞ¼Õ.
+>kotlin:S125¦"Remove this commented out code.(åìŒÆ8Ü§•½Õ.
+7kotlin:S125¸"Remove this commented out code.(¶öÃ¹
+>kotlin:S125˜"Remove this commented out code.(™±Ãš8ÄõûıÓ.
+Rkotlin:S1135è"2Complete the task associated to this TODO comment.(Ö¾ã¯8ÄõûıÓ.
+Fkotlin:S108‘")Either remove or fill this block of code.(’«—çûÿÿÿÿ
+Rkotlin:S1144E".Remove this unused private "setupAnim" method.(Øê‘êúÿÿÿÿ8‚”§ŠÔ.
+>kotlin:S125¢"Remove this commented out code.(µˆÊß8‰ıßÿÓ.
+Wkotlin:S1481˜"2Remove this unused "sessionObject" local variable.(¬ë·‹ùÿÿÿÿ8ÄõûıÓ.
+7kotlin:S125û"Remove this commented out code.(³çªº
+<kotlin:S1259"Remove this commented out code.(ı¹8ÄõûıÓ.
+Ckotlin:S125ÿ"Remove this commented out code.(†ñ¥—ùÿÿÿÿ8ÄõûıÓ.
+Akotlin:S108–")Either remove or fill this block of code.(‰ú‘¾
+Ckotlin:S125"Remove this commented out code.(ò¿î¢üÿÿÿÿ8”çâ‹Ô.

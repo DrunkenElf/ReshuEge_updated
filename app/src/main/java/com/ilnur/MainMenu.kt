@@ -149,13 +149,15 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        viewModel.launchCheck()
+        //viewModel.launchCheck()
         //viewModel.getAllSubjects()
 
         observeTitle()
 
-        if (viewModel.peek().isNullOrBlank())
+       /* if (viewModel.peek().isNullOrBlank()) {
+            Log.d("MAIN", "nullOrBlank ${viewModel.peek()}")
             viewModel.push("РЕШУ ЕГЭ")
+        }*/
         Log.d("MAINACT", "onCreate")
 
 
@@ -224,7 +226,8 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
             getNavController().popBackStack()
             viewModel.pop()
 
-            if (viewModel.peek() == null){
+            if (viewModel.peek() == null || viewModel.peek() == "null"){
+                Log.d("MAIN", "onBackPressed ${viewModel.peek()}")
                 viewModel.push("РЕШУ ЕГЭ")
             }
 

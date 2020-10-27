@@ -1,41 +1,10 @@
 
-;kotlin:S125_"Remove this commented out code.(Àğ®Âøÿÿÿÿ
-;kotlin:S125j"Remove this commented out code.(Ñïùÿÿÿÿ
-<kotlin:S125€"Remove this commented out code.(Â‘ şùÿÿÿÿ
-<kotlin:S125‘"Remove this commented out code.(Ñïùÿÿÿÿ
-7kotlin:S125—"Remove this commented out code.(¤¢ëˆ
-7kotlin:S125¤"Remove this commented out code.(è£¡Î
-<kotlin:S125²"Remove this commented out code.(øİ‘Åùÿÿÿÿ
-7kotlin:S125Æ"Remove this commented out code.(‹©ÙÕ
-7kotlin:S125Ù"Remove this commented out code.(»ëæ„
-<kotlin:S125÷"Remove this commented out code.(‚òò¦şÿÿÿÿ
-7kotlin:S125„"Remove this commented out code.(»§êí
-<kotlin:S125‹"Remove this commented out code.(²•¾ ıÿÿÿÿ
-<kotlin:S125"Remove this commented out code.(Ñïùÿÿÿÿ
-<kotlin:S125»"Remove this commented out code.(ãÌÏÙúÿÿÿÿ
-<kotlin:S125Ä"Remove this commented out code.(·•şËûÿÿÿÿ
-7kotlin:S125á"Remove this commented out code.(½‘Ñ³
-7kotlin:S125Ü"Remove this commented out code.(ö·’Ì
-7kotlin:S125é"Remove this commented out code.(ö·’Ì
-xkotlin:S1192­"ZDefine a constant instead of duplicating this literal "-ege.sdamgia.ru/api?type=" 4 times.(«•èœşÿÿÿÿ
-gkotlin:S1192­"IDefine a constant instead of duplicating this literal "https://" 4 times.(«•èœşÿÿÿÿ
-qkotlin:S1192|"TDefine a constant instead of duplicating this literal "/RESHUEGE/Pictures/" 4 times.(»è©íúÿÿÿÿ
-pkotlin:S1192k"SDefine a constant instead of duplicating this literal ": Ğ·Ğ°Ğ³Ñ€ÑƒĞ·ĞºĞ°" 3 times.(¤•¯ıÿÿÿÿ
-Kkotlin:S1481v".Remove this unused "questions" local variable.(ÅÙßÈüÿÿÿÿ
-nkotlin:S117s"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(ûí‹½ûÿÿÿÿ
-Fkotlin:S108…")Either remove or fill this block of code.(ÍÖ¥ºÿÿÿÿÿ
-Lkotlin:S1066ä".Merge this "if" statement with the nested one.(Éïº·úÿÿÿÿ
-jkotlin:S117«"MRename this parameter to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(ÒğÃùÿÿÿÿ
-skotlin:S1186²"ZAdd a nested comment explaining why this function is empty or complete the implementation.(œ«ç›
-Akotlin:S1481·"(Remove this unused "url" local variable.(ÒßÖÃ
-Ikotlin:S1481Œ"+Remove this unused "output" local variable.(˜ã×åøÿÿÿÿ
-okotlin:S117”"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(æ ª¨øÿÿÿÿ
-ekotlin:S117¹"MRename this parameter to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(ß®¼Ä
-@kotlin:S1481ú"'Remove this unused "id" local variable.(¡¬‡Ü
-Ekotlin:S1481¬"'Remove this unused "id" local variable.(ä–ª¢ùÿÿÿÿ
-jkotlin:S117†"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(²İì©
-jkotlin:S117‘"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(»œ¥¿
-jkotlin:S117•"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(©š–Á
-okotlin:S117¦"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(‚ÜòØşÿÿÿÿ
-jkotlin:S117©"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(òû¤ò
-kkotlin:S3776·"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(áœÑ
+7kotlin:S125ë"Remove this commented out code.(½‘Ñ³
+<kotlin:S125°"Remove this commented out code.(øİ‘Åùÿÿÿÿ
+7kotlin:S125 "Remove this commented out code.(è£¡Î
+<kotlin:S125Ê"Remove this commented out code.(·•şËûÿÿÿÿ
+Ckotlin:S125Ç"Remove this commented out code.(ú’Óıÿÿÿÿ8÷‘§Ö.
+>kotlin:S125"Remove this commented out code.(âõ¼ 8÷‘§Ö.
+>kotlin:S125ã"Remove this commented out code.(‡å‚°8÷‘§Ö.
+Akotlin:S4663¬"!Remove this comment, it is empty.(‡å‚°8÷‘§Ö.
+Fkotlin:S4663×"!Remove this comment, it is empty.(®û£Ëúÿÿÿÿ8÷‘§Ö.

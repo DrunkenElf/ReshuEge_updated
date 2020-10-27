@@ -1,5 +1,6 @@
 
-;kotlin:S125v"Remove this commented out code.(Ş†ªÕıÿÿÿÿ
-nkotlin:S117/"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(šÂÀøÿÿÿÿ
-ikotlin:S117K"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(¹ ›Ò
-nkotlin:S117*"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(½¢äĞúÿÿÿÿ
+xkotlin:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(µêÏ–8ŒÈ‚Ô.
+okotlin:S117˜"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(½¢äĞúÿÿÿÿ
+okotlin:S117"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(šÂÀøÿÿÿÿ
+<kotlin:S125è"Remove this commented out code.(Ş†ªÕıÿÿÿÿ
+jkotlin:S117¹"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(¹ ›Ò

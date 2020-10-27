@@ -1,0 +1,32 @@
+
+6kotlin:S125Z"Remove this commented out code.(ãÇ•å
+6kotlin:S125g"Remove this commented out code.(âĞ“™
+5kotlin:S125n"Remove this commented out code.(™ÓÃr
+<kotlin:S125"Remove this commented out code.(¿ñ‰Şıÿÿÿÿ
+<kotlin:S125•"Remove this commented out code.(Ñïùÿÿÿÿ
+<kotlin:S125Á"Remove this commented out code.(Ñïùÿÿÿÿ
+7kotlin:S125ç"Remove this commented out code.(‹©ÙÕ
+<kotlin:S125–"Remove this commented out code.(‚òò¦şÿÿÿÿ
+7kotlin:S125¤"Remove this commented out code.(Ú®ğ€
+<kotlin:S125ª"Remove this commented out code.(²•¾ ıÿÿÿÿ
+<kotlin:S125­"Remove this commented out code.(Ñïùÿÿÿÿ
+rkotlin:S1192°"TDefine a constant instead of duplicating this literal "/RESHUEGE/Pictures/" 3 times.(§™¾ùÿÿÿÿ
+qkotlin:S1192–"SDefine a constant instead of duplicating this literal ": Ğ·Ğ°Ğ³Ñ€ÑƒĞ·ĞºĞ°" 3 times.(¤•¯ıÿÿÿÿ
+Fkotlin:S1481=")Remove this unused "isOk" local variable.(á·‰èÿÿÿÿÿ
+Ikotlin:S1481G"1Remove this unused "variantArray" local variable.(¾¤‚®
+Lkotlin:S1481«".Remove this unused "questions" local variable.(ÅÙßÈüÿÿÿÿ
+Akotlin:S1481Ê")Remove this unused "isOk" local variable.(Ï›¿|
+okotlin:S117¨"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(ûí‹½ûÿÿÿÿ
+Fkotlin:S108µ")Either remove or fill this block of code.(ÍÖ¥ºÿÿÿÿÿ
+Lkotlin:S1066ƒ".Merge this "if" statement with the nested one.(Éïº·úÿÿÿÿ
+okotlin:S117Å"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(æ ª¨øÿÿÿÿ
+ekotlin:S117é"MRename this parameter to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(ß®¼Ä
+Fkotlin:S108Œ")Either remove or fill this block of code.(ÍÖ¥ºÿÿÿÿÿ
+@kotlin:S1481›"'Remove this unused "id" local variable.(¡¬‡Ü
+Ekotlin:S1481Í"'Remove this unused "id" local variable.(ä–ª¢ùÿÿÿÿ
+jkotlin:S117§"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(²İì©
+jkotlin:S117²"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(»œ¥¿
+jkotlin:S117¶"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(©š–Á
+okotlin:S117Ç"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(‚ÜòØşÿÿÿÿ
+jkotlin:S117Ê"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(òû¤ò
+kkotlin:S3776Ø"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(áœÑ

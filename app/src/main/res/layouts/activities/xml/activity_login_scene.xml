@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/email_sign_in_button" />
+        <Constraint
+            android:id="@+id/sign_up"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="48dp"
+            app:layout_constraintBottom_toTopOf="@id/skip_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+        <Constraint
+            android:id="@+id/skip_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+        <Constraint
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/textView2"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginRight="60dp"
+            app:layout_constraintDimensionRatio="4:3" />
+        <Constraint
+            android:id="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/input_email"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintHorizontal_bias="0.0" />
+        <Constraint
+            android:id="@+id/layer_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@id/email_sign_in_button"
+            android:rotation="90"
+            android:translationY="700dp" />
+        <Constraint
+            android:id="@+id/sign_up"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="48dp"
+            app:layout_constraintBottom_toTopOf="@id/skip_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:translationY="400dp" />
+        <Constraint
+            android:id="@+id/skip_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:translationY="200dp" />
+        <Constraint
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/textView2"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginRight="60dp"
+            app:layout_constraintDimensionRatio="4:3"
+            android:translationY="200dp" />
+        <Constraint
+            android:id="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/input_email"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:translationY="200dp" />
+        <Constraint
+            android:id="@+id/layer_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationY="700dp" />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:layoutDuringTransition="honorRequest"
+        app:autoTransition="animateToEnd" />
+    <ConstraintSet android:id="@+id/login_attempt_start" >
+        <Constraint
+            android:id="@+id/packman"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:visibility="invisible"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@id/input_email"
+            app:layout_constraintBottom_toBottomOf="@id/input_password"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_goneMarginBottom="8dp" />
+        <Constraint
+            android:id="@+id/input_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintBottom_toTopOf="@id/input_password"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginRight="16dp"
+            android:visibility="visible" />
+        <Constraint
+            android:id="@+id/input_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/email_sign_in_button"
+            android:visibility="visible" />
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/login_attempt_end" >
+        <Constraint
+            android:id="@+id/packman"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:visibility="visible"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@id/input_email"
+            app:layout_constraintBottom_toBottomOf="@id/input_password"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_goneMarginBottom="8dp" />
+        <Constraint
+            android:id="@+id/input_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintBottom_toTopOf="@id/input_password"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginRight="16dp"
+            android:translationX="700dp" />
+        <Constraint
+            android:id="@+id/input_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/email_sign_in_button"
+            android:translationX="-700dp" />
+    </ConstraintSet>
+    <Transition
+        app:constraintSetStart="@+id/login_attempt_start"
+        app:constraintSetEnd="@+id/login_attempt_end"
+        app:autoTransition="none" />
+    <Transition
+        app:constraintSetStart="@+id/login_attempt_end"
+        app:constraintSetEnd="@+id/login_attempt_start"
+        app:autoTransition="none" />
+    <ConstraintSet
+        android:id="@+id/move_left"
+        app:deriveConstraintsFrom="@+id/end" >
+        <Constraint
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/textView2"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:translationY="200dp"
+            android:layout_marginRight="60dp"
+            app:layout_constraintDimensionRatio="4:3"
+            android:translationX="-600dp"
+            app:transitionEasing="cubic(0.8,0,1,1)" />
+        <Constraint
+            android:id="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/input_email"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:translationY="200dp"
+            android:translationX="-600dp"
+            app:transitionEasing="cubic(0.8,0,1,1)"
+            android:scaleX="0.3"
+            android:scaleY="0.3" />
+    </ConstraintSet>
+    <Transition
+        app:constraintSetStart="@+id/end"
+        app:constraintSetEnd="@+id/move_left"
+        app:autoTransition="animateToEnd"
+        app:motionInterpolator="easeInOut">
+        <KeyFrameSet >
+            <KeyAttribute
+                app:motionTarget="@+id/logo"
+                app:framePosition="99"
+                android:rotation="-45" />
+        </KeyFrameSet>
+    </Transition>
+</MotionScene>

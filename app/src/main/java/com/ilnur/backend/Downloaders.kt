@@ -47,7 +47,7 @@ class Downloaders @Inject constructor(
     fun getSubjectService(
         intent1: Intent,
         href: String, name: String,
-        notifManager1: NotificationManagerCompat
+        notifManager1: NotificationManagerCompat, position: Int,
     ) {
         this.name = name
         val intent = intent1
@@ -62,6 +62,7 @@ class Downloaders @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             getSubject(href)
             Log.d("dwn","dwn getSubjectServ")
+            db.subjectMainDao().update(SubjectMain(title = name, href = href, isAdded = true, isNeedToUpd = false))
             CoroutineScope(Dispatchers.Main).launch{
                 notifManager.cancel(33)
                 notifBuilder = NotificationCompat.Builder(context.applicationContext, "77").apply {
@@ -76,7 +77,7 @@ class Downloaders @Inject constructor(
                 intent.action = "done"
                 notifManager.notify(77, notifBuilder.build())
                 LocalBroadcastManager.getInstance(context.applicationContext)
-                    .sendBroadcast(intent.putExtra("broadcastMessage", true))
+                    .sendBroadcast(intent.putExtra("broadcastMessage", true).putExtra("position", position))
                 DownloadForeground.stopService(context.applicationContext)
             }
         }

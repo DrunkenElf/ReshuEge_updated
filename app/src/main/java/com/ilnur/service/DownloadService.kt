@@ -12,10 +12,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
-import com.ilnur.DownloadTasks.ForegroundService1
+//import com.ilnur.DownloadTasks.ForegroundService1
 import com.ilnur.R
 import com.ilnur.backend.Downloaders
 import com.ilnur.repository.MainRepository
+import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.ServiceScoped
 import kotlinx.coroutines.CoroutineScope
@@ -23,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class DownloadForeground : Service() {
     //val CHANNEL_ID = "FOREGROUND"
 
@@ -39,18 +41,23 @@ class DownloadForeground : Service() {
 
 
     //lateinit var downloaders: Downloaders
+    @Inject
+    lateinit var downloaders: Downloaders
 
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
+    override fun onCreate() {
+        super.onCreate()
 
+    }
 
     companion object {
-        lateinit var downloaders: Downloaders
+        //lateinit var downloaders: Downloaders
         fun startService(context: Context, prefix: String, name: String, downloaders1: Downloaders) {
-            downloaders = downloaders1
+            //downloaders = downloaders1
             val startIntent = Intent(context.applicationContext, DownloadForeground::class.java)
             startIntent.putExtra("prefix", prefix)
             startIntent.putExtra("name", name)
@@ -67,6 +74,8 @@ class DownloadForeground : Service() {
         subject_prefix = intent!!.getStringExtra("prefix").toString()
         name = intent.getStringExtra("name").toString()
 
+        val position = intent.getIntExtra("position", -1)
+
         val settingsPref = PreferenceManager.getDefaultSharedPreferences(this)
         download_pictures = settingsPref.getBoolean("download_pictures", false)
 
@@ -81,7 +90,7 @@ class DownloadForeground : Service() {
             }
         startForeground(1, notificationBuilder.build())
 
-        downloaders.getSubjectService(intent,subject_prefix, "name", notificationManager)
+        downloaders.getSubjectService(intent,subject_prefix, name, notificationManager, position)
 
         return START_STICKY
     }
