@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.ilnur.Fragments.SettingsFragment"
+        android:name="com.reshuege.Fragments.SettingsFragment"
         android:label="SettingsFragment" />
 
 
@@ -16,7 +16,7 @@
         app:startDestination="@id/except_search">
         <fragment
             android:id="@+id/nav_subj_search"
-            android:name="com.ilnur.Fragments.SubjectSearchFragment"
+            android:name="com.reshuege.Fragments.SubjectSearchFragment"
             tools:layout="@layout/fragment_subjs" >
             <action
                 android:id="@+id/action_nav_subj_search_self"
@@ -42,7 +42,7 @@
             app:startDestination="@id/nav_start_page">
             <fragment
                 android:id="@+id/nav_start_page"
-                android:name="com.ilnur.Fragments.StartPageFragment"
+                android:name="com.reshuege.Fragments.StartPageFragment"
                 android:label="главное меню"
                 tools:layout="@layout/fragment_startpage">
                 <action
@@ -83,12 +83,12 @@
             </fragment>
             <fragment
                 android:id="@+id/nav_subj"
-                android:name="com.ilnur.Fragments.SubjectsFragment"
+                android:name="com.reshuege.Fragments.SubjectsFragment"
                 android:label="реж_экз"
                 tools:layout="@layout/fragment_subjs" />
             <fragment
                 android:id="@+id/nav_subj_themes"
-                android:name="com.ilnur.Fragments.SubjectThemesFragment"
+                android:name="com.reshuege.Fragments.SubjectThemesFragment"
                 android:label="катал_пром"
                 tools:layout="@layout/fragment_subjs">
                 <action
@@ -102,11 +102,11 @@
             <fragment
                 android:id="@+id/createTestsFragment"
 
-                android:name="com.ilnur.Fragments.CreateTestsFragment"
+                android:name="com.reshuege.Fragments.CreateTestsFragment"
                 android:label="CreateTestsFragment" />
             <fragment
                 android:id="@+id/themesFragment"
-                android:name="com.ilnur.Fragments.ThemesFragment"
+                android:name="com.reshuege.Fragments.ThemesFragment"
                 android:label="ThemesFragment">
                 <argument
                     android:name="subject_prefix"
@@ -114,7 +114,7 @@
             </fragment>
             <fragment
                 android:id="@+id/nav_teacher2"
-                android:name="com.ilnur.Fragments.TeacherFragment"
+                android:name="com.reshuege.Fragments.TeacherFragment"
                 tools:layout="@layout/fragment_teacher">
                 <argument
                     android:name="href"
@@ -133,7 +133,7 @@
             </fragment>
             <fragment
                 android:id="@+id/theoryFragment"
-                android:name="com.ilnur.Fragments.TheoryFragment"
+                android:name="com.reshuege.Fragments.TheoryFragment"
                 android:label="TheoryFragment">
                 <argument
                     android:name="subject_prefix"
@@ -141,7 +141,7 @@
             </fragment>
             <fragment
                 android:id="@+id/nav_subj_theory"
-                android:name="com.ilnur.Fragments.SubjectsTheoryFragment"
+                android:name="com.reshuege.Fragments.SubjectsTheoryFragment"
                 android:label="теор_"
                 tools:layout="@layout/fragment_subjs">
                 <action
@@ -154,7 +154,7 @@
             </fragment>
             <fragment
                 android:id="@+id/nav_subj_vars"
-                android:name="com.ilnur.Fragments.SubjectsFragment"
+                android:name="com.reshuege.Fragments.SubjectsFragment"
                 android:label="переход_вар"
                 tools:layout="@layout/fragment_subjs">
                 <action
@@ -167,7 +167,7 @@
             </fragment>
             <fragment
                 android:id="@+id/variantsFragment"
-                android:name="com.ilnur.Fragments.VariantsFragment"
+                android:name="com.reshuege.Fragments.VariantsFragment"
                 android:label="VariantsFragment">
                 <argument
                     android:name="subject_prefix"
@@ -175,7 +175,7 @@
             </fragment>
             <fragment
                 android:id="@+id/nav_teacher1"
-                android:name="com.ilnur.Fragments.SubjectSearchFragment"
+                android:name="com.reshuege.Fragments.SubjectSearchFragment"
                 tools:layout="@layout/fragment_subjs">
                 <action
                     android:id="@+id/action_nav_teacher1_to_nav_teacher2"

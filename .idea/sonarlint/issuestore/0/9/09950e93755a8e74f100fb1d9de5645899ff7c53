@@ -1,31 +1,31 @@
 
-<kotlin:S125¤"Remove this commented out code.(İ©¢£ùÿÿÿÿ
-hkotlin:S1192Z"PDefine a constant instead of duplicating this literal "Ğ Ğ•Ğ¨Ğ£ Ğ•Ğ“Ğ­" 4 times.(£ÿë‹
-Ckotlin:S125˜"Remove this commented out code.(‡ÈÓüÿÿÿÿ8òÆ¯ğÓ.
-Ckotlin:S125"Remove this commented out code.(©µŞØúÿÿÿÿ8´ú„¡Ö.
-hkotlin:S1192"ODefine a constant instead of duplicating this literal "Ğ£Ñ‡Ğ¸Ñ‚ĞµĞ»Ñ" 3 times.(ªëÌ¬
-kkotlin:S3776î"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(­¹»à
-<kotlin:S125í"Remove this commented out code.(´–›Òûÿÿÿÿ
-Bkotlin:S125:"Remove this commented out code.(ŒÁëŠùÿÿÿÿ8¹Š‰şÒ.
-jkotlin:S1192ô"QDefine a constant instead of duplicating this literal "Ğ’Ğ°Ñ€Ğ¸Ğ°Ğ½Ñ‚Ñ‹" 3 times.(——ÿ÷
-7kotlin:S125æ"Remove this commented out code.(ë®šµ
-|kotlin:S1192ú"^Define a constant instead of duplicating this literal "ĞšĞ°Ñ‚Ğ°Ğ»Ğ¾Ğ³ Ğ·Ğ°Ğ´Ğ°Ğ½Ğ¸Ğ¹" 3 times.(ôòâÁøÿÿÿÿ
-okotlin:S117"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(ó™ùüıÿÿÿÿ
 qkotlin:S1192ş"SDefine a constant instead of duplicating this literal "ĞĞ°ÑÑ‚Ñ€Ğ¾Ğ¹ĞºĞ¸" 4 times.(ÛÕøÁşÿÿÿÿ
-wkotlin:S1192”"_Define a constant instead of duplicating this literal "Ğ’ĞµÑ€ÑĞ¸Ñ Ğ¿Ñ€ĞµĞ´Ğ¼ĞµÑ‚Ğ° " 3 times.(Ş†N
-6kotlin:S125i"Remove this commented out code.(ö·’Ì
-6kotlin:S125\"Remove this commented out code.(ö·’Ì
-jkotlin:S117²"MRename this parameter to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(¸Ú’Ğúÿÿÿÿ
+jkotlin:S1192ô"QDefine a constant instead of duplicating this literal "Ğ’Ğ°Ñ€Ğ¸Ğ°Ğ½Ñ‚Ñ‹" 3 times.(——ÿ÷
+|kotlin:S1192ú"^Define a constant instead of duplicating this literal "ĞšĞ°Ñ‚Ğ°Ğ»Ğ¾Ğ³ Ğ·Ğ°Ğ´Ğ°Ğ½Ğ¸Ğ¹" 3 times.(ôòâÁøÿÿÿÿ
 <kotlin:S125Õ"Remove this commented out code.(æıŠñûÿÿÿÿ
 Bkotlin:S125p"Remove this commented out code.(¾¾Šªÿÿÿÿÿ8›¹©ƒÓ.
-7kotlin:S125"Remove this commented out code.(ñ›ù
-<kotlin:S125È"Remove this commented out code.(„ë¾½ûÿÿÿÿ
-7kotlin:S125ì"Remove this commented out code.(Ää˜
-ukotlin:S1192€"\Define a constant instead of duplicating this literal "Ğ ĞµĞ¶Ğ¸Ğ¼ ÑĞºĞ·Ğ°Ğ¼ĞµĞ½Ğ°" 3 times.(¬¿²Ô
-@kotlin:S1481î"'Remove this unused "db" local variable.(×ƒ¶Ñ
->kotlin:S125”"Remove this commented out code.(ô¼Ø8ÿ´ß‚Ó.
 jkotlin:S100Ç"RRename function "href_to_subj" to match the regular expression ^[a-z][a-zA-Z0-9]*$(¹˜§–
-fkotlin:S1192Œ"MDefine a constant instead of duplicating this literal "Ğ¢ĞµĞ¾Ñ€Ğ¸Ñ" 3 times.(¸Ú•‚
-skotlin:S1192¬"UDefine a constant instead of duplicating this literal "Ğ¡Ñ‚Ğ°Ñ‚Ğ¸ÑÑ‚Ğ¸ĞºĞ°" 8 times.(½…šõûÿÿÿÿ
+<kotlin:S125¤"Remove this commented out code.(İ©¢£ùÿÿÿÿ
+6kotlin:S125\"Remove this commented out code.(ö·’Ì
+7kotlin:S125æ"Remove this commented out code.(ë®šµ
+wkotlin:S1192”"_Define a constant instead of duplicating this literal "Ğ’ĞµÑ€ÑĞ¸Ñ Ğ¿Ñ€ĞµĞ´Ğ¼ĞµÑ‚Ğ° " 3 times.(Ş†N
+hkotlin:S1192"ODefine a constant instead of duplicating this literal "Ğ£Ñ‡Ğ¸Ñ‚ĞµĞ»Ñ" 3 times.(ªëÌ¬
 pkotlin:S3776Š"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ªï¬øÿÿÿÿ
+7kotlin:S125ì"Remove this commented out code.(Ää˜
+Ckotlin:S125˜"Remove this commented out code.(‡ÈÓüÿÿÿÿ8òÆ¯ğÓ.
 okotlin:S1192º"VDefine a constant instead of duplicating this literal "ĞĞ± ÑĞºĞ·Ğ°Ğ¼ĞµĞ½Ğµ" 8 times.(ô®Òİ
+fkotlin:S1192Œ"MDefine a constant instead of duplicating this literal "Ğ¢ĞµĞ¾Ñ€Ğ¸Ñ" 3 times.(¸Ú•‚
+>kotlin:S125”"Remove this commented out code.(ô¼Ø8ÿ´ß‚Ó.
+7kotlin:S125"Remove this commented out code.(ñ›ù
+kkotlin:S3776î"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(­¹»à
+jkotlin:S117²"MRename this parameter to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(¸Ú’Ğúÿÿÿÿ
+ukotlin:S1192€"\Define a constant instead of duplicating this literal "Ğ ĞµĞ¶Ğ¸Ğ¼ ÑĞºĞ·Ğ°Ğ¼ĞµĞ½Ğ°" 3 times.(¬¿²Ô
+6kotlin:S125i"Remove this commented out code.(ö·’Ì
+hkotlin:S1192Z"PDefine a constant instead of duplicating this literal "Ğ Ğ•Ğ¨Ğ£ Ğ•Ğ“Ğ­" 4 times.(£ÿë‹
+skotlin:S1192¬"UDefine a constant instead of duplicating this literal "Ğ¡Ñ‚Ğ°Ñ‚Ğ¸ÑÑ‚Ğ¸ĞºĞ°" 8 times.(½…šõûÿÿÿÿ
+@kotlin:S1481î"'Remove this unused "db" local variable.(×ƒ¶Ñ
+<kotlin:S125È"Remove this commented out code.(„ë¾½ûÿÿÿÿ
+<kotlin:S125í"Remove this commented out code.(´–›Òûÿÿÿÿ
+Ckotlin:S125"Remove this commented out code.(©µŞØúÿÿÿÿ8´ú„¡Ö.
+Bkotlin:S125:"Remove this commented out code.(ŒÁëŠùÿÿÿÿ8¹Š‰şÒ.
+okotlin:S117"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(ó™ùüıÿÿÿÿ

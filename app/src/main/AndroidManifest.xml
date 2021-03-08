@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.ilnur">
+    package="com.reshuege">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,7 +14,7 @@
 
 
     <application
-        android:name=".Reshuege"
+        android:name="com.reshuege.Reshuege"
 
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,7 +39,7 @@
 
 
 
-        <activity android:name=".SplashActivity"
+        <activity android:name="com.reshuege.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,53 +48,53 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ilnur.MainMenu"
+            android:name="com.reshuege.MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
 
         </activity>
-        <service android:name=".service.DownloadForeground">
+        <service android:name="com.reshuege.service.DownloadForeground">
         </service>
 
-        <service android:name=".DownloadTasks.DownloadIntService" />
+        <service android:name="com.reshuege.DownloadTasks.DownloadIntService" />
         <!--<receiver android:name=".Adapters.SubjAdapter$BroadIntReceiver" ></receiver>-->
         <activity
-            android:name="com.ilnur.TestsActivity"
+            android:name="com.reshuege.TestsActivity"
             android:label="@string/title_activity_tests"
             android:theme="@style/AppTheme.Login" />
         <activity
-            android:name="com.ilnur.ResultsActivity"
+            android:name="com.reshuege.ResultsActivity"
             android:label="@string/title_activity_results"
             android:theme="@style/AppTheme.Login" />
-        <activity android:name="com.ilnur.ShowTheoryActivity"
+        <activity android:name="com.reshuege.ShowTheoryActivity"
             android:theme="@style/AppTheme"/>
 
-        <activity android:name="com.ilnur.SearchActivity"
+        <activity android:name="com.reshuege.SearchActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.ilnur.SearchResultActivity"
+        <activity android:name="com.reshuege.SearchResultActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name="com.ilnur.SearchTaskResult"
+        <activity android:name="com.reshuege.SearchTaskResult"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name="com.ilnur.LoginActivity"
+            android:name="com.reshuege.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.Login" >
         </activity>
-        <activity android:name="com.ilnur.StatisticsActivity"
+        <activity android:name="com.reshuege.StatisticsActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name="com.ilnur.AboutExamActivity"
+        <activity android:name="com.reshuege.AboutExamActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name="com.ilnur.SearchTypeActivity"
+        <activity android:name="com.reshuege.SearchTypeActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name="com.ilnur.TeacherActivity1"
+        <activity android:name="com.reshuege.TeacherActivity1"
             android:theme="@style/AppTheme.Login"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity
             android:theme="@style/AppTheme"
-            android:name="com.ilnur.SignUpActivity"
+            android:name="com.reshuege.SignUpActivity"
             />
-        <activity android:name=".TeacherActivity"
+        <activity android:name="com.reshuege.TeacherActivity"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
     </application>

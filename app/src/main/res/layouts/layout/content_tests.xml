@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:transitionGroup="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_tests" tools:context="com.ilnur.TestsActivity">
+    tools:showIn="@layout/activity_tests" tools:context="com.reshuege.TestsActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,13 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:transitionGroup="true"
-        android:name="com.ilnur.Fragments.QuestionNumbersFragment" />
+        android:name="com.reshuege.Fragments.QuestionNumbersFragment" />
     <fragment
         android:id="@+id/fragment_show_task"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:transitionGroup="true"
-        android:name="com.ilnur.Fragments.ShowTaskFragment"
+        android:name="com.reshuege.Fragments.ShowTaskFragment"
         android:layout_weight="1" />
 
         <fragment
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:transitionGroup="true"
-            android:name="com.ilnur.Fragments.AnswerFragment1"
+            android:name="com.reshuege.Fragments.AnswerFragment1"
             android:layout_gravity="bottom"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="3dp" />
