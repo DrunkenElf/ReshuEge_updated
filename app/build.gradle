@@ -10,6 +10,7 @@ android {
     //useLibrary 'org.apache.http.legacy'
     //apply plugin: 'kotlin-android-extensions'
     compileSdkVersion 30
+    buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.reshuege"
         minSdkVersion 21
